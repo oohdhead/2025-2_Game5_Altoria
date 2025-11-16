@@ -4420,6 +4420,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a0b7c6446d5825341b66b8c50c5c5988
+    m_Address: GameEnvironment
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a0c6b3bf0335a4640adc2c788cad22e4
     m_Address: PP_Stone_Crystal_Gradient_01
     m_ReadOnly: 0
