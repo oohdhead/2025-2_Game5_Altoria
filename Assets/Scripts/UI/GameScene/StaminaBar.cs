@@ -8,12 +8,12 @@ public class StaminaBar : UIWidget
     [SerializeField] Image stamina;
     void Start()
     {
-        SetStamina();
+        SetStamina();     //실시간 갱신 필요
     }
     public void SetStamina()
     {
-        // UserPlayerData의 스테미나 변수를 불러올 부분
-        // float value = userPlayerData.GetPlayerData().Stemina;
-        // stamina.fillAmount = value;
+        float value = Manager.UserData.GetUserData<UserPlayerData>().GetPlayerData().Stemina;
+        //Debug.Log("Stamina Value: " + value);
+        stamina.fillAmount = value;
     }
 }
