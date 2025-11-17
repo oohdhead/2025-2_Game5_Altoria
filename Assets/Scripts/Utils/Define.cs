@@ -63,5 +63,13 @@ public class Define
         Die=1<<5,
 
     }
-    
+    public enum CustomizationType
+    {
+        EyeBrow,
+        Eye,
+        Mouth,
+        FaceHair,
+        Hair,
+        COUNT,
+    }
 }
