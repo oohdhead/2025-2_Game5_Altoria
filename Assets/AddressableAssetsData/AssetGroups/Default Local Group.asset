@@ -4275,6 +4275,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b69c8f559687ba47a149f67bd15c26c
+    m_Address: Player
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9b81f93c67781424b99f52aa5aaf7434
     m_Address: PP_Crystal_Column_01_Blue
     m_ReadOnly: 0
@@ -4417,6 +4422,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a095ed5df5d7f494391f7de60c7041bd
     m_Address: PP_Leafless_Tree_11
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a0b7c6446d5825341b66b8c50c5c5988
+    m_Address: GameEnvironment
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
