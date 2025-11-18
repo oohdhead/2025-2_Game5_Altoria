@@ -13,10 +13,8 @@ public class ItemDeletePopUp : UIPopUp
     [Header("UI 요소")]
     [SerializeField] InventoryItemSlot itemIcon;
     [SerializeField] TextMeshProUGUI itemNameText;
-    [SerializeField] Button plusButton;
-    [SerializeField] Button minusButton;
-    [SerializeField] Button maxButton;
     [SerializeField] TMP_InputField CountInput;
+    [SerializeField] TextMeshProUGUI caution;
 
     InventoryEntry currentItem;
 
@@ -28,11 +26,9 @@ public class ItemDeletePopUp : UIPopUp
     {
         //Manager.Init();
         Instance = this;   //인스턴스 초기화
+        caution.gameObject.SetActive(false);
 
         CountInput.onValueChanged.AddListener(OnInputChanged);
-        plusButton.onClick.AddListener(OnPlus);
-        minusButton.onClick.AddListener(OnMinus);
-        maxButton.onClick.AddListener(OnMax);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,16 +36,9 @@ public class ItemDeletePopUp : UIPopUp
         CountInput.text = "1";
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnEnable()
     {
         //SetItem(itemID, maxCount);
-
     }
 
     public override bool Init()
@@ -86,7 +75,7 @@ public class ItemDeletePopUp : UIPopUp
         CountInput.onValueChanged.AddListener(OnInputChanged);
     }
 
-    void OnPlus()
+    public void OnPlus()
     {
         if (currentCount >= maxCount) return;
         currentCount++;
@@ -96,7 +85,7 @@ public class ItemDeletePopUp : UIPopUp
         CountInput.onValueChanged.AddListener(OnInputChanged);
     }
 
-    void OnMinus()
+    public void OnMinus()
     {
         if (currentCount <= 1) return;
         currentCount--;
@@ -126,15 +115,17 @@ public class ItemDeletePopUp : UIPopUp
 
         if (success)
         {
+            InventoryUI.Instance.RefreshInventory();
+            OnClose();
             Debug.Log($"[ItemDeletePopUp] : {currentItem.item.ItemData.Name} 아이템 {currentCount}개 삭제 완료");
         }
         else
         {
-            Debug.Log($"[ItemDeletePopUp] : {currentItem.item.ItemData.Name} 삭제 실패 - 존재하지 않음");
+            if (currentItem.isEquipped) caution.gameObject.SetActive(true);
+            else Debug.Log($"[ItemDeletePopUp] : {currentItem.item.ItemData.Name} 삭제 실패 - 존재하지 않음");
         }
 
-        InventoryUI.Instance.RefreshInventory();
-        OnClose();
+        
     }
     public static ItemDeletePopUp Open(InventoryEntry data)
     {

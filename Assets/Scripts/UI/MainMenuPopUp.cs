@@ -2,38 +2,38 @@ using UnityEngine;
 using UnityEngine.UI;
 using GameUI;
 using TMPro;
+using GameInteract;
+using Common;
+using static UnityEngine.Rendering.DebugUI;
 
 [System.Serializable]
 public class Stat
 {
-    public Slider slider;
+    public TextMeshProUGUI levelText;
     public TextMeshProUGUI statText;
+    public Slider slider;
 }
 
 public class MainMenuPopUp : UIPopUp
 {
-    [SerializeField] Stat[] stats = new Stat[4];
+    [SerializeField] Stat[] stats = new Stat[3];
+
+    readonly System.Type[] lifeTypes =
+    {
+        typeof(TotalLife),
+        typeof(CollectInteractComponent),
+        typeof(UpgradeInteractComponent)
+    };
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     { 
-        updateStats();
+        UpdateStats();
     }
 
     private void OnEnable()
     {
-        updateStats();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        /*
-       if(settingUI.activeSelf && Input.GetKeyDown(KeyCode.I))
-       {
-            창 닫기  
-       }
-       */
+        UpdateStats();
     }
 
     public override bool Init()
@@ -41,29 +41,67 @@ public class MainMenuPopUp : UIPopUp
         return base.Init();
     }
 
-    public void updateStats()
+    void UpdateStats()
     {
         for (int i = 0; i < stats.Length; i++)
         {
-            int index = i;
-
-            stats[i].slider.onValueChanged.AddListener((value) =>
-            {
-                stats[index].statText.text = value.ToString("F0") + " / 250";
-            });
-            stats[i].statText.text = stats[i].slider.value.ToString("F0") + " / 250";
+            UpdateStatByIndex(i);
         }
     }
+
+    void UpdateStatByIndex(int index)
+    {
+        var stat = stats[index];
+        var type = lifeTypes[index];
+
+        // 레벨
+        stat.levelText.text = "LV " + GetLevel(type);
+
+        // 경험치
+        int exp = GetEXP(type);
+
+        stat.slider.minValue = 0;
+        stat.slider.maxValue = 250;
+        stat.slider.value = exp;
+
+        stat.statText.text = $"{exp} / {stat.slider.maxValue}";
+    }
+    int GetLevel(System.Type t)
+    {
+        if (t == typeof(TotalLife))
+            return GameSystem.Life.GetLevel<TotalLife>();
+        if (t == typeof(CollectInteractComponent))
+            return GameSystem.Life.GetLevel<CollectInteractComponent>();
+        if (t == typeof(UpgradeInteractComponent))
+            return GameSystem.Life.GetLevel<UpgradeInteractComponent>();
+
+        return 1;
+    }
+
+    int GetEXP(System.Type t)
+    {
+        if (t == typeof(TotalLife))
+            return GameSystem.Life.GetEXP<TotalLife>();
+        if (t == typeof(CollectInteractComponent))
+            return GameSystem.Life.GetEXP<CollectInteractComponent>();
+        if (t == typeof(UpgradeInteractComponent))
+            return GameSystem.Life.GetEXP<UpgradeInteractComponent>();
+
+        return 0;
+    }
+
     public void OnClickInventory()
     {
         Manager.UI.ShowPopup<InventoryUI>();
     }
     public void OnClickCraft()
     {
+        Manager.UI.ShowPopup<CraftPopUp>();
     }
 
     public void OnClickUpgrade()
     {
+        Manager.UI.ShowPopup<UpgradePopUp>();
     }
 
     public void OnClickSetting()
@@ -71,8 +109,19 @@ public class MainMenuPopUp : UIPopUp
         Manager.UI.ShowPopup<SettingPopUp>();
         Debug.Log("[MainMenuPopUp] : 설정창");
     }
+    public void OnClickMain()
+    {
+        Manager.UI.ShowPopup<ExitPopUp>().SetPopUpType(ExitPopUpType.GoToMainMenu);
+        Debug.Log("[MainMenuPopUp] : 메인메뉴로");
+    }
 
-    public void closePopUp()
+    public void OnClickExit()
+    {
+        Manager.UI.ShowPopup<ExitPopUp>().SetPopUpType(ExitPopUpType.ExitGame);
+        Debug.Log("[MainMenuPopUp] : 종료창");
+    }
+
+    public void ClosePopUp()
     {
         Manager.UI.ClosePopup();
     }
