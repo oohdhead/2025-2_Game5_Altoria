@@ -6,9 +6,13 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
+using static SettingData;
+using System.Text;
 
 public class SettingPopUp : UIPopUp
 {
+    SettingData setting = SettingData.Instance;
+
     [Header("Setting Tabs")]
     [SerializeField] List<GameObject> tabs;
 
@@ -19,6 +23,8 @@ public class SettingPopUp : UIPopUp
     [SerializeField] SliderInput SFXtext;   
 
     [Header("Control Settings")]
+    [SerializeField] TMP_Dropdown screenmode;
+    [SerializeField] TMP_Dropdown resolution;
     [SerializeField] SliderInput CameraSensitivity;
 
     void Awake()
@@ -36,6 +42,10 @@ public class SettingPopUp : UIPopUp
         // 슬라이더 값 변경 시 사운드 매니저에 반영
         BGMtext.GetComponent<Slider>().onValueChanged.AddListener(SoundManager.Instance.SetBGMVolume);
         SFXtext.GetComponent<Slider>().onValueChanged.AddListener(SoundManager.Instance.SetSFXVolume);
+
+        // 화면모드, 품질
+        screenmode.onValueChanged.AddListener(ChangeScreenMode);
+        resolution.onValueChanged.AddListener(SetGraphicQuality); 
 
         // 카메라 감도 초기화
         CameraSensitivity.Value = 60f;
@@ -102,15 +112,21 @@ public class SettingPopUp : UIPopUp
         SoundManager.Instance.SetSFXVolume(value);
     }
 
-    // 그래픽 설정
-    public void SetCameraSensitivitySlider()
+    // 화면 모드
+    public void ChangeScreenMode(int index)
     {
-        //감도 조절 부분 
+        setting.SetScreenMode((GameScreenMode)index);
     }
 
-    public void customerClick()
+    // 품질 설정
+    public void SetGraphicQuality(int index)
     {
-        // 문의 링크
-        Application.OpenURL("https://www.youtube.com/watch?v=BlAvNOmBLKY");
+        setting.SetQuality(index);
+    }
+
+    // 그래픽 설정
+    public void SetCameraSensitivitySlider(float sensitivity)
+    {
+        setting.SetMouseSensitivity(sensitivity);
     }
 }

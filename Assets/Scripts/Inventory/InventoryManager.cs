@@ -6,8 +6,7 @@ using GameData;
 
 public class InventoryManager 
 {
-    [Header("플레이어 인벤토리 데이터 (보유 중 아이템 목록)")]
-   InventoryDatabase inventoryData; // 데이터 저장용
+    InventoryDatabase inventoryData; // 데이터 저장용
 
     List<InventoryEntry> inventory = new(); // 런타임용
 
@@ -19,7 +18,6 @@ public class InventoryManager
 
     public void Init()
     {
-
         inventoryData = Resources.Load<InventoryDatabase>(nameof(InventoryDatabase));
         InventoryLoad();
     }
@@ -41,17 +39,8 @@ public class InventoryManager
             return false;
         }
 
-
-        ItemData itemData = GameDB.GetItemData(itemID);
-
-        if (itemData == null)
-        {
-            Debug.LogWarning($"[InventoryManager] : {itemID} 아이템 정보를 찾을 수 없음");
-            itemData = new ItemData { ID = itemID, Name = "Temp Item" };
-        }
-
         // 새로운 아이템 생성
-        InventoryEntry newItem = new InventoryEntry(ItemFactory.CreateItem(itemData), count);
+        InventoryEntry newItem = new InventoryEntry(itemID, count);
 
         inventory.Add(newItem);
         Debug.Log($"[InventoryManager] : {itemID} {count}개 새 슬롯 추가 (현재 슬롯 수: {inventory.Count})");
@@ -69,6 +58,12 @@ public class InventoryManager
             return false;
         }
 
+        if (existing.isEquipped)
+        {
+            Debug.LogWarning($"[InventoryManager] : {itemID} 장착된 아이템은 삭제할 수 없음");
+            return false;
+
+        }
         existing.count -= count;
         if (existing.count <= 0)
         {
@@ -121,10 +116,7 @@ public class InventoryManager
 
         foreach (var data in inventoryData.rows)
         {
-            if (data.Item == null) continue;
-
-            Item item = ItemFactory.CreateItem(data.Item);
-            InventoryEntry newItem = new InventoryEntry(item, data.Count, data.IsEquipped);
+            InventoryEntry newItem = new InventoryEntry(data.ID, data.Count, data.IsEquipped);
 
             inventory.Add(newItem);
         }
@@ -135,14 +127,14 @@ public class InventoryManager
     public void InventorySave()
     {
         inventoryData.rows.Clear();
-
+        //EditorUtility.SetDirty();
         foreach (var entry in inventory)
         {
-            if (entry.item == null) continue;
+            if (entry == null) continue;
 
             InventoryData data = new InventoryData
             {
-                Item = entry.item.ItemData,
+                ID = entry.item.ItemData.ID,
                 Count = entry.count,
                 IsEquipped = entry.isEquipped
             };

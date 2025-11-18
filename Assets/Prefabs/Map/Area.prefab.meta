@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/UI/StaminaBG.prefab.meta
+guid: cc02246a1bfcb2b41af8fd8e37144357
+========
 guid: 7ea351d9f8f3c9847b8f2f49800df24f
+>>>>>>>> Develop:Assets/Prefabs/Map/Area.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
