@@ -1278,7 +1278,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4848697787115240259}
         m_TargetAssemblyTypeName: ItemDeletePopUp, Assembly-CSharp
         m_MethodName: OnMax
         m_Mode: 1
@@ -1649,6 +1649,34 @@ PrefabInstance:
     - target: {fileID: 128967390930240384, guid: 6854f42db491d2949abebf70ce5da1c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1582852550144175693, guid: 6854f42db491d2949abebf70ce5da1c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1582852550144175693, guid: 6854f42db491d2949abebf70ce5da1c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1582852550144175693, guid: 6854f42db491d2949abebf70ce5da1c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4848697787115240259}
+    - target: {fileID: 1582852550144175693, guid: 6854f42db491d2949abebf70ce5da1c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1582852550144175693, guid: 6854f42db491d2949abebf70ce5da1c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnMinus
+      objectReference: {fileID: 0}
+    - target: {fileID: 1582852550144175693, guid: 6854f42db491d2949abebf70ce5da1c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ItemDeletePopUp, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1582852550144175693, guid: 6854f42db491d2949abebf70ce5da1c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7304853215979309993, guid: 6854f42db491d2949abebf70ce5da1c9, type: 3}
       propertyPath: m_Name
@@ -2201,6 +2229,34 @@ PrefabInstance:
     - target: {fileID: 128967390930240384, guid: 6854f42db491d2949abebf70ce5da1c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1582852550144175693, guid: 6854f42db491d2949abebf70ce5da1c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1582852550144175693, guid: 6854f42db491d2949abebf70ce5da1c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1582852550144175693, guid: 6854f42db491d2949abebf70ce5da1c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4848697787115240259}
+    - target: {fileID: 1582852550144175693, guid: 6854f42db491d2949abebf70ce5da1c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1582852550144175693, guid: 6854f42db491d2949abebf70ce5da1c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnPlus
+      objectReference: {fileID: 0}
+    - target: {fileID: 1582852550144175693, guid: 6854f42db491d2949abebf70ce5da1c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ItemDeletePopUp, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1582852550144175693, guid: 6854f42db491d2949abebf70ce5da1c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7304853215979309993, guid: 6854f42db491d2949abebf70ce5da1c9, type: 3}
       propertyPath: m_Name

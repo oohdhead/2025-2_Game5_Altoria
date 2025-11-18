@@ -11,7 +11,7 @@ using System.Text;
 
 public class SettingPopUp : UIPopUp
 {
-    SettingData sd = SettingData.Instance;
+    SettingData setting = SettingData.Instance;
 
     [Header("Setting Tabs")]
     [SerializeField] List<GameObject> tabs;
@@ -26,11 +26,6 @@ public class SettingPopUp : UIPopUp
     [SerializeField] TMP_Dropdown screenmode;
     [SerializeField] TMP_Dropdown resolution;
     [SerializeField] SliderInput CameraSensitivity;
-
-    [Header("Key Settings")]
-    [SerializeField] TextMeshProUGUI actionText;
-    [SerializeField] TextMeshProUGUI keyText1;
-    [SerializeField] TextMeshProUGUI keyText2;
 
     void Awake()
     {
@@ -120,42 +115,18 @@ public class SettingPopUp : UIPopUp
     // 화면 모드
     public void ChangeScreenMode(int index)
     {
-        sd.SetScreenMode((GameScreenMode)index);
+        setting.SetScreenMode((GameScreenMode)index);
     }
 
     // 품질 설정
     public void SetGraphicQuality(int index)
     {
-        sd.SetQuality(index);
+        setting.SetQuality(index);
     }
 
     // 그래픽 설정
     public void SetCameraSensitivitySlider(float sensitivity)
     {
-        sd.SetMouseSensitivity(sensitivity);
-    }
-
-    // 키바인딩 리스트 띄우기
-    public void OnClickKeyBinding()
-    {
-        StringBuilder action = new StringBuilder();
-        StringBuilder key1 = new StringBuilder();
-        StringBuilder key2 = new StringBuilder();
-        List<KeyBindingData> list = sd.GetkeyBindingList();
-
-        for(int i = 0; i < list.Count; i++)
-        {
-            action.AppendLine(list[i].actionName);
-            key1.AppendLine(list[i].key.ToString());
-            if (list[i].secondaryKey != KeyCode.None)
-                key2.AppendLine(list[i].secondaryKey.ToString());
-        } 
-            
-    }
-
-    public void customerClick()
-    {
-        // 임시 문의 링크
-        Application.OpenURL("https://www.youtube.com/watch?v=BlAvNOmBLKY");
+        setting.SetMouseSensitivity(sensitivity);
     }
 }

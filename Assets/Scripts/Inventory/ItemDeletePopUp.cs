@@ -13,9 +13,6 @@ public class ItemDeletePopUp : UIPopUp
     [Header("UI ¿ä¼Ò")]
     [SerializeField] InventoryItemSlot itemIcon;
     [SerializeField] TextMeshProUGUI itemNameText;
-    [SerializeField] Button plusButton;
-    [SerializeField] Button minusButton;
-    [SerializeField] Button maxButton;
     [SerializeField] TMP_InputField CountInput;
     [SerializeField] TextMeshProUGUI caution;
 
@@ -32,9 +29,6 @@ public class ItemDeletePopUp : UIPopUp
         caution.gameObject.SetActive(false);
 
         CountInput.onValueChanged.AddListener(OnInputChanged);
-        plusButton.onClick.AddListener(OnPlus);
-        minusButton.onClick.AddListener(OnMinus);
-        maxButton.onClick.AddListener(OnMax);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -81,7 +75,7 @@ public class ItemDeletePopUp : UIPopUp
         CountInput.onValueChanged.AddListener(OnInputChanged);
     }
 
-    void OnPlus()
+    public void OnPlus()
     {
         if (currentCount >= maxCount) return;
         currentCount++;
@@ -91,7 +85,7 @@ public class ItemDeletePopUp : UIPopUp
         CountInput.onValueChanged.AddListener(OnInputChanged);
     }
 
-    void OnMinus()
+    public void OnMinus()
     {
         if (currentCount <= 1) return;
         currentCount--;

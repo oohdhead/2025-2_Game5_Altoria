@@ -20,61 +20,11 @@ public class SettingData : MonoBehaviour
 
     }
 
-    [Serializable]
-    public class KeyBindingData
-    {
-        public string actionName;  // 예: "MoveForward"
-        public KeyCode key;        // 예 : W
-        public KeyCode secondaryKey; // 예 : UpArrow (선택 사항)     // 현재 wasd, 상하좌우 키 둘 다 사용중인 것 같아서 action당 key를 두개 할당
-
-        public KeyBindingData(string actionName, KeyCode key, KeyCode secondary = KeyCode.None)
-        {
-            this.actionName = actionName;
-            this.key = key;
-            this.secondaryKey = secondary;
-        }
-    }
-
     public float BGMVolume = 0.8f;
     public float SFXVolume = 0.8f;
     public GameScreenMode ScreenMode = GameScreenMode.Fullscreen;
     public int QualityLevel = 2;
     public float MouseSensitivity = 0.5f;  //cameracontroller의 sensitivity와 매칭
-
-    [SerializeField] List<KeyBindingData> keyBindingList = new List<KeyBindingData>();
-
-    public SettingData()
-    {
-        keyBindingList = new List<KeyBindingData>
-        {
-            new KeyBindingData("MoveForward", KeyCode.W, KeyCode.UpArrow),    // 두가지 키 할당
-            new KeyBindingData("MoveBackward", KeyCode.S, KeyCode.DownArrow), // 두가지 키 할당
-            new KeyBindingData("MoveLeft", KeyCode.A, KeyCode.LeftArrow),     // 두가지 키 할당
-            new KeyBindingData("MoveRight", KeyCode.D, KeyCode.RightArrow),   // 두가지 키 할당
-            new KeyBindingData("Jump", KeyCode.Space),
-            new KeyBindingData("Interact", KeyCode.Mouse0),
-            new KeyBindingData("Inventory", KeyCode.I),
-            new KeyBindingData("Craft", KeyCode.C),
-            new KeyBindingData("Upgrade", KeyCode.G),
-            new KeyBindingData("Escape", KeyCode.Escape)
-        };
-    }
-
-    // key down 가이드라인
-    // example)
-    // Input.GetKey(SettingData.GetKey("MoveForward"))
-    //
-    public KeyCode GetKey(string actionName)
-    {
-        var entry = keyBindingList.Find(k => k.actionName == actionName);
-        if (entry == null) return KeyCode.None;
-        return entry.key;
-    }
-
-    public List<KeyBindingData> GetkeyBindingList()
-    {
-        return keyBindingList;
-    }
 
     public void ResetToDefault()
     {
@@ -83,34 +33,6 @@ public class SettingData : MonoBehaviour
         ScreenMode = GameScreenMode.Fullscreen;
         QualityLevel = 2;
         MouseSensitivity = 0.5f;
-
-        keyBindingList.Clear();
-        keyBindingList = new List<KeyBindingData>
-        {
-            new KeyBindingData("MoveForward", KeyCode.W, KeyCode.UpArrow),
-            new KeyBindingData("MoveBackward", KeyCode.S, KeyCode.DownArrow),
-            new KeyBindingData("MoveLeft", KeyCode.A, KeyCode.LeftArrow),
-            new KeyBindingData("MoveRight", KeyCode.D, KeyCode.RightArrow),
-            new KeyBindingData("Jump", KeyCode.Space),
-            new KeyBindingData("Interact", KeyCode.Mouse0),
-            new KeyBindingData("Inventory", KeyCode.I),
-            new KeyBindingData("Craft", KeyCode.C),
-            new KeyBindingData("Upgrade", KeyCode.G),
-            new KeyBindingData("Escape", KeyCode.Escape)
-        };
-    }
-
-    public bool ChangeKey(string actionName, KeyCode newKey, bool isPrimary = true)
-    {
-        var entry = keyBindingList.Find(k => k.actionName == actionName);
-        if (entry != null)
-        {
-            if(isPrimary) entry.key = newKey;
-            else entry.secondaryKey = newKey;
-            Debug.Log($"[SettingData] : {actionName} -> {(isPrimary ? "주" : "보조")}키: {newKey}");
-            return true;
-        }
-        return false;
     }
 
     #region Set

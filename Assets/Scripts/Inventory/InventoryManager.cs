@@ -22,13 +22,6 @@ public class InventoryManager
         InventoryLoad();
     }
 
-    void StarterItem()
-    {
-        AddItem("12211000");
-        AddItem("12221000");
-        AddItem("12231000");
-        AddItem("12241000");
-    }
     public bool AddItem(string itemID, int count = 1)
     {
         InventoryEntry existing = inventory.Find(x => x.item.ItemData.ID == itemID);

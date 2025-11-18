@@ -12,26 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f3f9b37e8d3554abb8791fbb883c41, type: 3}
   m_Name: InventoryData
   m_EditorClassIdentifier: 
-  itemDatabase: {fileID: 0}
   rows:
-  - ID: 12211000
-    Name: 
-    IsEquipped: 1
+  - ID: "\uC0AC\uC6A9\uD558\uC9C0\uC54A\uB294so"
     Count: 2
+    IsEquipped: 1
   - ID: 12212000
-    Name: 
-    IsEquipped: 0
     Count: 3
+    IsEquipped: 0
   - ID: 12213000
-    Name: 
-    IsEquipped: 1
     Count: 4
+    IsEquipped: 1
   - ID: 12214000
-    Name: 
-    IsEquipped: 1
     Count: 4
+    IsEquipped: 1
   - ID: 12215000
-    Name: 
-    IsEquipped: 1
     Count: 4
+    IsEquipped: 1
+  - ID: 10073052
+    Count: 85
+    IsEquipped: 0
+  - ID: 10051005
+    Count: 66
+    IsEquipped: 0
   maxSlotCount: 30
