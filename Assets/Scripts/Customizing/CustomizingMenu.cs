@@ -1,3 +1,4 @@
+using Common;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -212,5 +213,7 @@ namespace GameUI
 
             SetSlot();
         }
+
+        public void OnClickStartButton() => Manager.Scene.LoadScene(Define.SceneType.GameScene);
     }
 }

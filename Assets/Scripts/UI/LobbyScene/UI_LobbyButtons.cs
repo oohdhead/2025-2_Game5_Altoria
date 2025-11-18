@@ -1,6 +1,7 @@
 using Common;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Recorder.OutputPath;
 
 namespace GameUI
 {
@@ -22,8 +23,8 @@ namespace GameUI
         {
             GameSystem.Init();
 
-            // TODO: 시작할 Scene Data에서 받아와서 사용하기
-            Manager.Scene.LoadScene(Define.SceneType.GameScene);
+            Manager.UI.HideHUD();
+            Instantiate(Resources.Load<GameObject>(nameof(CustomizingMenu)));
         }
 
         public void OnClickSettingButton()
