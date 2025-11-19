@@ -32,15 +32,15 @@ public class Define
 
     public enum ContentType
     {
-        None=0,
-        Farm=1,
-        Fish=2,
-        Fell=3,// ����
-        Animal=4,
-        Mining=5,
-        Plant=6,
-        Upgrade=7,
-        Craft=8,
+        None,
+        Farm,
+        Fish,
+        Fell,
+        Animal,
+        Mining,
+        Plant,
+        Upgrade,
+        Craft,
     }
     public enum AreaType
     {

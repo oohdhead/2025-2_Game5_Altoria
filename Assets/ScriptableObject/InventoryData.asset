@@ -15,19 +15,19 @@ MonoBehaviour:
   rows:
   - ID: "\uC0AC\uC6A9\uD558\uC9C0\uC54A\uB294so"
     Count: 2
-    IsEquipped: 1
+    IsEquipped: 0
   - ID: 12212000
     Count: 3
     IsEquipped: 0
   - ID: 12213000
     Count: 4
-    IsEquipped: 1
+    IsEquipped: 0
   - ID: 12214000
     Count: 4
-    IsEquipped: 1
+    IsEquipped: 0
   - ID: 12215000
     Count: 4
-    IsEquipped: 1
+    IsEquipped: 0
   - ID: 10073052
     Count: 85
     IsEquipped: 0

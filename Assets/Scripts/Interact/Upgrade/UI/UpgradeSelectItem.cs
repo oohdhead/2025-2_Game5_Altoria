@@ -9,7 +9,7 @@ namespace GameInteract
 {
     public class UpgradeSelectItem : MonoBehaviour
     {
-        [SerializeField] Image itemGradeImg;
+        [SerializeField] protected Image itemGradeImg;
         [SerializeField] Image itmeImg;
         [SerializeField] GameObject brokeImg;
         [SerializeField] TextMeshProUGUI gradeStep;

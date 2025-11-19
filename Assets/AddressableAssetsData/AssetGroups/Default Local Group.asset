@@ -4080,6 +4080,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 952bbff8fffcf4d49ba8037cafb3968e
+    m_Address: ItemDatabase
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9531c67dc9d38e1419b18230cb623d28
     m_Address: PP_Cave_Wall_Curved_Corner_Veins_09_Silver
     m_ReadOnly: 0
@@ -6655,6 +6660,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f477e676804d5f14f804df9eaba1a034
+    m_Address: DefaultFrame
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f48dad60d5098bc44a447ab3b1db1a5e
     m_Address: PP_Rail_07
     m_ReadOnly: 0
@@ -6687,11 +6697,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f530c64cf760e1444a8b5d5fd168b2fe
     m_Address: PP_Crystal_Column_04_Blue
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f546d854122c5934295cc3b3f21b1f0d
-    m_Address: ItemDatabase
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

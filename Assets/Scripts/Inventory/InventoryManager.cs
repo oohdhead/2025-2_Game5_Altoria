@@ -92,21 +92,21 @@ public class InventoryManager
 
     public void SetEquipItem(EquipItem item)
     {
-        equipItemList[item.ItemData.content] = item;
+        equipItemList[item.ItemData.Content] = item;
         OnItemEquipped?.Invoke(item);
     }
 
     public void SetUnequipItem(EquipItem item)
     {
-        if (equipItemList.Remove(item.ItemData.content))
+        if (equipItemList.Remove(item.ItemData.Content))
             OnItemUnequipped?.Invoke(item);
     }
 
-    public int GetEquipItemLevel(Define.ContentType contentType)
+    public EquipItem GetEquipItem(Define.ContentType contentType)
     {
         equipItemList.TryGetValue(contentType, out EquipItem item);
-        if (item == null) return 0;
-        return item.Level;
+        if (item == null) return null;
+        return item;
     }
 
     // Load & Save
@@ -118,6 +118,9 @@ public class InventoryManager
         foreach (var data in inventoryData.rows)
         {
             InventoryEntry newItem = new InventoryEntry(data.ID, data.Count, data.IsEquipped);
+
+            if(newItem.isEquipped)
+                equipItemList[newItem.item.ItemData.Content] = (EquipItem)newItem.item;
 
             inventory.Add(newItem);
         }
