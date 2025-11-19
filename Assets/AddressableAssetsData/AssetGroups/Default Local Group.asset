@@ -4850,6 +4850,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aeb00aa9822ab824699f23ba3178d813
+    m_Address: Female
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: aed05d650fdc1f1498b011b2a338a2d1
     m_Address: Blacksmithing House
     m_ReadOnly: 0
@@ -5842,6 +5847,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d495ede3a016c784cad5c193ffac6fa8
     m_Address: PP_Coin_14_Gold
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d49c65de9fce66146b5d0e164b1f9d2d
+    m_Address: Male
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

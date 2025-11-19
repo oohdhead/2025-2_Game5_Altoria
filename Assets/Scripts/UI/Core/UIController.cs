@@ -90,7 +90,7 @@ namespace GameUI
         {
             if (popupType == null || !typeof(UIPopUp).IsAssignableFrom(popupType))
             {
-                Debug.LogError($"[UIController] {popupType} is not a valid UIPopUp type");
+                Debug.LogError($"[UIController] {popupType} is not a valid UIPopUp Type");
                 return null;
             }
 

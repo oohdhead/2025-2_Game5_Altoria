@@ -58,7 +58,7 @@ public class LifeStatsManager
         //    { nameof(UpgradeInteractComponent), new ()},
         //    { nameof(TotalLife), new ()},
         //};
-        SetData();
+        //SetData();
     }
 
     void SetData()
@@ -106,7 +106,7 @@ public class LifeStatsManager
 
         if (!weights.ContainsKey(type))
         {
-            Debug.LogError($"{GetType()} : not exit type({type})");
+            Debug.LogError($"{GetType()} : not exit Type({type})");
             return;
         }
 

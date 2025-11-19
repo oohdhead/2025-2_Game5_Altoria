@@ -12,7 +12,6 @@ public class GameScene : BaseScene
     const string PlayerKey = "Player";
     const string NavMeshKey = "NavMesh/GameScene";
 
-    Vector3 PlayerPos = new Vector3(-33.9f, 3.74f, -12.01f);
     NavMeshDataInstance navMeshInstance;
     bool isInit;
     protected override void Init()
@@ -56,7 +55,8 @@ public class GameScene : BaseScene
     void PlayerLoad()
     {
         Manager.Resource.Instantiate(PlayerKey,
-            new InstantiateOptions { Position = PlayerPos },
+            new InstantiateOptions { Position = Manager.UserData.GetUserData<UserPlayerData>().GetPlayerPosition()
+            , Rotation = Manager.UserData.GetUserData<UserPlayerData>().GetPlayerQuaternion() },
             obj =>
             {
                 Manager.UI.ShowHUD<UI_GameScene>();
@@ -66,8 +66,9 @@ public class GameScene : BaseScene
     void CreatDayNight()
     {
         var go = new GameObject("DayNight");
-        go.AddComponent<DayNightCycle>();
-        go.transform.SetParent(this.transform); 
+        var script = go.AddComponent<DayNightCycle>();
+        go.transform.SetParent(this.transform);
+        script.InitTime(Manager.UserData.GetUserData<UserPlayerData>().GetTime());
     }
 
     protected virtual void OnDestroy()

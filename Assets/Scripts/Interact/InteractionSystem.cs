@@ -61,7 +61,6 @@ public class InteractionSystem
             CurrentState = InteractionState.Interacting;
             CurrentTarget.OnInteractionEnded += HandleInteractionEnded;
         }
-     
     }
 
     public void HoldInteract()
