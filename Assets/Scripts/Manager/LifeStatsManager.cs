@@ -52,12 +52,12 @@ public class LifeStatsManager
 
     public LifeStatsManager()
     {
-        //lifeStats = new Dictionary<string, LifeStatData>()
-        //{
-        //    { nameof(CollectInteractComponent), new ()},
-        //    { nameof(UpgradeInteractComponent), new ()},
-        //    { nameof(TotalLife), new ()},
-        //};
+        lifeStats = new Dictionary<string, LifeStatData>()
+        {
+            { nameof(CollectInteractComponent), new ()},
+            { nameof(UpgradeInteractComponent), new ()},
+            { nameof(TotalLife), new ()},
+        };
         //SetData();
     }
 
@@ -83,10 +83,6 @@ public class LifeStatsManager
         if (!lifeStats.ContainsKey(type)) return;
 
         bool levelUp = lifeStats[type].AddExp(amount);
-        if (levelUp)
-        {
-            Debug.Log($"{GetType()} : {type} ���õ� ������! {GetLevel<T>() - 1} -> {GetLevel<T>()}");
-        }
 
         SetTotalStat(type, amount, levelUp);
     }
@@ -105,18 +101,10 @@ public class LifeStatsManager
             return;
 
         if (!weights.ContainsKey(type))
-        {
-            Debug.LogError($"{GetType()} : not exit Type({type})");
             return;
-        }
 
         int addExp = Mathf.RoundToInt(weights[type] * amount);
         bool _levelUp = lifeStats[nameof(TotalLife)].AddExp(addExp);
-
-        if (_levelUp)
-        {
-            Debug.Log($"{GetType()} : ��Ȱ�� ������! {GetLevel<TotalLife>() - 1} -> {GetLevel<TotalLife>()}");
-        }
     }
 
     public Dictionary<string, LifeStatData> GetLifeStats() => lifeStats;

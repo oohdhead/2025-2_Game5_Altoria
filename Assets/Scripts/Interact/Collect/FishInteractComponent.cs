@@ -1,6 +1,6 @@
 using Common;
 using GameData;
-using System;
+using GameUI;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
@@ -40,10 +40,12 @@ namespace GameInteract
             for (int i = 0; i < data.FishGroups.Count; i++)
                 probList.Add((data.FishGroups[i], data.FishGroups[i].Probability));
 
-            var item = Common.GameSystem.Random.Pick(probList, GameDB.GetUpgradeData(GameSystem.Inventory.GetEquipItemLevel(Type)).Bous);
-            GameSystem.Inventory.AddItem(gameObject.name, 1);
-
-            Common.GameSystem.Life.AddExp<CollectInteractComponent>(10);
+            var item = GameSystem.Random.Pick(probList, GameDB.GetUpgradeData(GameSystem.Inventory.GetEquipItemLevel(Type)).Bous);
+            
+            GameSystem.Life.AddExp<CollectInteractComponent>(10);
+            
+            var popUp = Manager.UI.ShowPopup<GetItemPopUp>();
+            popUp.SetData(item.ID, 1);
 
             EndInteract();
         }

@@ -95,36 +95,24 @@ public class DayNightCycle : MonoBehaviour
         // 4~6 : »õº® / 6~18 : ³· / 18~19 : ¼®¾ç / 19~4 : ¹ã
         if (hour < 6f) // Night -> Mornging
         {
-            if(hour == 4)
-                GameSystem.Instance.timeType = ETimeType.Morning;
-
             fromMat = nightMat;
             toMat = morningMat;
             blend = Mathf.InverseLerp(0f, 6f, hour);
         }
         else if (hour < 18f) // Mornging -> Day
         {
-            if(hour == 6)
-                GameSystem.Instance.timeType = ETimeType.Day;
-
             fromMat = morningMat;
             toMat = dayMat;
             blend = Mathf.InverseLerp(6f, 18f, hour);
         }
         else if (hour < 19f) // Day -> Sunset
         {
-            if (hour == 18)
-                GameSystem.Instance.timeType = ETimeType.Sunset;
-
             fromMat = dayMat;
             toMat = sunsetMat;
             blend = Mathf.InverseLerp(18f, 19f, hour);
         }
         else
         {
-            if (hour == 19)
-                GameSystem.Instance.timeType = ETimeType.Night;
-
             fromMat = sunsetMat;
             toMat = nightMat;
             blend = Mathf.InverseLerp(19f, 24f, hour);
