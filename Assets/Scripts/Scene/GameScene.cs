@@ -3,17 +3,17 @@ using GameUI;
 using SceneLoad;
 using SceneLoade;
 using UnityEngine;
-using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class GameScene : BaseScene
 {
     protected int task = 15;
 
     const string PlayerKey = "Player";
-    const string NavMeshKey = "NavMesh/GameScene";
+    const string EnvironmentSceneName = "GameEnvironment";
 
-    NavMeshDataInstance navMeshInstance;
     bool isInit;
+
     protected override void Init()
     {
         if (isInit) return;
@@ -22,6 +22,7 @@ public class GameScene : BaseScene
 
         GameSystem.Init();
         sceneType = Define.SceneType.GameScene;
+
         SceneLoad();
         CreatDayNight();
     }
@@ -31,32 +32,35 @@ public class GameScene : BaseScene
         var loadingUI = Manager.UI.ShowPopup<LoadingUI>();
 
 
-        Manager.Resource.LoadAsync<NavMeshData>(NavMeshKey, data =>
+        AsyncOperation op = SceneManager.LoadSceneAsync(EnvironmentSceneName, LoadSceneMode.Additive);
+
+        op.completed += _ =>
         {
-            if (data != null)
-            {
-                navMeshInstance = NavMesh.AddNavMeshData(data);
-                Debug.Log(" NavMesh loaded before map.");
-            }
-            else
-            {
-                Debug.LogError("Failed to load NavMeshData Addressable!");
-            }
+            Scene envScene = SceneManager.GetSceneByName(EnvironmentSceneName);
+            SceneManager.SetActiveScene(envScene);
+            Debug.Log($"[GameScene] Environment Additive Loaded: {EnvironmentSceneName}");
 
-
+        
             var loader = new JsonMapLoader($"{GetType()}", task);
             loader.Load();
 
+
             loadingUI.StartLoding(loader);
+
+
             loadingUI.OnClosed += PlayerLoad;
-        });
+        };
     }
 
     void PlayerLoad()
     {
-        Manager.Resource.Instantiate(PlayerKey,
-            new InstantiateOptions { Position = Manager.UserData.GetUserData<UserPlayerData>().GetPlayerPosition()
-            , Rotation = Manager.UserData.GetUserData<UserPlayerData>().GetPlayerQuaternion() },
+        Manager.Resource.Instantiate(
+            PlayerKey,
+            new InstantiateOptions
+            {
+                Position = Manager.UserData.GetUserData<UserPlayerData>().GetPlayerPosition(),
+                Rotation = Manager.UserData.GetUserData<UserPlayerData>().GetPlayerQuaternion()
+            },
             obj =>
             {
                 Manager.UI.ShowHUD<UI_GameScene>();
@@ -73,11 +77,7 @@ public class GameScene : BaseScene
 
     protected virtual void OnDestroy()
     {
-     
-        if (navMeshInstance.valid)
-        {
-            NavMesh.RemoveNavMeshData(navMeshInstance);
-            Debug.Log(" NavMesh Unloaded.");
-        }
+      
+        Debug.Log("GameScene Destroyed.");
     }
 }

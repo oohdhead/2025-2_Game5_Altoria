@@ -556,7 +556,7 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1296
   m_LayerOverridePriority: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -658,7 +658,7 @@ MonoBehaviour:
   groundDistance: 0.3
   groundMask:
     serializedVersion: 2
-    m_Bits: 720
+    m_Bits: 704
 --- !u!114 &5648328167043206141
 MonoBehaviour:
   m_ObjectHideFlags: 0
