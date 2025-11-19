@@ -1,5 +1,6 @@
 using Common;
 using GameData;
+using GameUI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,9 +44,11 @@ namespace GameInteract
                 probList.Add((data.CollectGroup[i], data.CollectGroup[i].Probability));
 
             var item = GameSystem.Random.Pick(probList, GameDB.GetUpgradeData(GameSystem.Inventory.GetEquipItemLevel(Type)).Bous);
-            GameSystem.Inventory.AddItem(objectID, item.Count);
-
+            
             GameSystem.Life.AddExp<CollectInteractComponent>(10);
+
+            var popUp = Manager.UI.ShowPopup<GetItemPopUp>();
+            popUp.SetData(objectID, item.Count);
 
             EndInteract();
         }

@@ -105,6 +105,7 @@ public class InventoryManager
     public int GetEquipItemLevel(Define.ContentType contentType)
     {
         equipItemList.TryGetValue(contentType, out EquipItem item);
+        if (item == null) return 0;
         return item.Level;
     }
 

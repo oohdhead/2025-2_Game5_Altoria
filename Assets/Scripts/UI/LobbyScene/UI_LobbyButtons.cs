@@ -31,8 +31,8 @@ namespace GameUI
         {
             //TODO:  ¼³Á¤Ã¢ ÆË¾÷
             GameSystem.Init();
-            //Manager.Scene.LoadScene(Define.SceneType.TestFC_1);
-            Manager.UI.ShowPopup<SettingPopUp>();
+            Manager.Scene.LoadScene(Define.SceneType.TestFC_1);
+            //Manager.UI.ShowPopup<SettingPopUp>();
         }
         public void OnClickExitButton()
         {
