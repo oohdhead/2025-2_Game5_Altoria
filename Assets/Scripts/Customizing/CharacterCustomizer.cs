@@ -1,36 +1,39 @@
-using System.Collections.Generic;
+using GameUI;
 using UnityEngine;
-using static Define;
+using UnityEngine.Analytics;
 
 public class CharacterCustomizer : MonoBehaviour
 {
-    [Header("Set Root")]
-    [SerializeField] Transform eyebrowRoot;
-    [SerializeField] Transform eyeRoot;
-    [SerializeField] Transform mouthRoot;
-    [SerializeField] Transform facehairRoot;
-    [SerializeField] Transform hairRoot;
+    [Header("Set Model")]
+    [SerializeField] SkinnedMeshRenderer hed;
+    [SerializeField] SkinnedMeshRenderer topBody;
+    [SerializeField] SkinnedMeshRenderer bottomBody;
+    [SerializeField] SkinnedMeshRenderer[] partsModels;
 
     void Awake()
     {
-        LoadParts(eyebrowRoot);
-        LoadParts(eyeRoot);
-        LoadParts(mouthRoot);
-        LoadParts(facehairRoot);
-        LoadParts(hairRoot);
+        SetModel();
     }
 
-    void LoadParts(Transform root)
+    void SetModel()
     {
+        var gender = ((EGender)Manager.UserData.GetUserData<UserPlayerData>().GetGender()).ToString();
+
+        hed.sharedMesh = Manager.Resource.Load<Mesh>($"{gender}[{gender[0]}_Head]");
+        topBody.sharedMesh = Manager.Resource.Load<Mesh>($"{gender}[{gender[0]}_TopBody]");
+        bottomBody.sharedMesh = Manager.Resource.Load<Mesh>($"{gender}[{gender[0]}_BottomBody]");
+
         for (int i = 0; i < (int)Define.CustomizationType.COUNT; i++)
         {
-            foreach (Transform child in root)
+            if (gender == "Female" && i == 3)
             {
-                // TODO: 플레이어 데이터에 저장된 커스터마이징 정보로 파츠들 활성화하기
-                // TODO: 이전에 플레이어 모델 프리펩의 모든 파츠들 비활성화 하기
-                if (child.name == Manager.UserData.GetUserData<UserPlayerData>().GetID((CustomizationType)i))
-                    child.gameObject.SetActive(true);
+                partsModels[i].enabled = false;
+                return;
             }
+
+            partsModels[i].sharedMesh = Manager.Resource.Load<Mesh>(
+                Manager.UserData.GetUserData<UserPlayerData>().GetID((Define.CustomizationType)i));
+
         }
     }
 }

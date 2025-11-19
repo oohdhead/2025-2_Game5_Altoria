@@ -65,11 +65,11 @@ public class Define
     }
     public enum CustomizationType
     {
-        EyeBrow,
-        Eye,
-        Mouth,
-        FaceHair,
-        Hair,
+        eyebrows,
+        eyes,
+        mouth,
+        facialHair_,
+        hair_,
         COUNT,
     }
 }

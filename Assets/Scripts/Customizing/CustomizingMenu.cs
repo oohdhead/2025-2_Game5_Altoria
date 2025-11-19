@@ -1,11 +1,18 @@
 using Common;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Define;
 
 namespace GameUI
 {
+    public enum EGender
+    {
+        Male,
+        Female,
+    }
+
     public class CustomizingMenu : MonoBehaviour
     {
         [Header("Set UI Slot")]
@@ -13,63 +20,28 @@ namespace GameUI
 
         [Header("Set Gender")]
         [SerializeField] TMP_Dropdown genderDropDown;
-        [SerializeField] GameObject maleModel;
-        [SerializeField] GameObject femaleModel;
+        [SerializeField] SkinnedMeshRenderer model;
 
-        [Header("Male Set Root")]
-        [SerializeField] Transform maleEyebrowRoot;
-        [SerializeField] Transform maleEyeRoot;
-        [SerializeField] Transform maleMouthRoot;
-        [SerializeField] Transform maleFacehairRoot;
-        [SerializeField] Transform maleHairRoot;
+        [Header("Set Root")]
+        [SerializeField] SkinnedMeshRenderer eyebrowRoot;
+        [SerializeField] SkinnedMeshRenderer eyeRoot;
+        [SerializeField] SkinnedMeshRenderer mouthRoot;
+        [SerializeField] SkinnedMeshRenderer facehairRoot;
+        [SerializeField] SkinnedMeshRenderer hairRoot;
 
-        [Header("Female Set Root")]
-        [SerializeField] Transform femaleEyebrowRoot;
-        [SerializeField] Transform femaleEyeRoot;
-        [SerializeField] Transform femaleMouthRoot;
-        [SerializeField] Transform femaleHairRoot;
+        [Header("FacialHair Object")]
+        [SerializeField] GameObject FacialHairObject;
 
-        Dictionary<string, GameObject> maleEyebrowParts = new Dictionary<string, GameObject>();
-        Dictionary<string, GameObject> maleEyeParts = new Dictionary<string, GameObject>();
-        Dictionary<string, GameObject> maleMouthParts = new Dictionary<string, GameObject>();
-        Dictionary<string, GameObject> maleFacehairParts = new Dictionary<string, GameObject>();
-        Dictionary<string, GameObject> maleHairParts = new Dictionary<string, GameObject>();
-
-        Dictionary<string, GameObject> femaleEyebrowParts = new Dictionary<string, GameObject>();
-        Dictionary<string, GameObject> femaleEyeParts = new Dictionary<string, GameObject>();
-        Dictionary<string, GameObject> femaleMouthParts = new Dictionary<string, GameObject>();
-        Dictionary<string, GameObject> femaleHairParts = new Dictionary<string, GameObject>();
+        readonly int[] malePartsCount = { 5, 5, 5, 8, 14 };
+        readonly int[] femalePartsCount = { 5, 5, 5, 0, 14 };
 
         List<GameObject> slots = new();
         int gender;
 
         public void Awake()
         {
-            Init();
             gender = 0;
             SetSlot();
-        }
-
-        void Init()
-        {
-            LoadParts(maleEyebrowRoot, maleEyebrowParts);
-            LoadParts(maleEyeRoot, maleEyeParts);
-            LoadParts(maleMouthRoot, maleMouthParts);
-            LoadParts(maleFacehairRoot, maleFacehairParts);
-            LoadParts(maleHairRoot, maleHairParts);
-
-            LoadParts(femaleEyebrowRoot, femaleEyebrowParts);
-            LoadParts(femaleEyeRoot, femaleEyeParts);
-            LoadParts(femaleMouthRoot, femaleMouthParts);
-            LoadParts(femaleHairRoot, femaleHairParts);
-        }
-
-        void LoadParts(Transform root, Dictionary<string, GameObject> dict)
-        {
-            foreach (Transform child in root)
-            {
-                dict.Add(child.name, child.gameObject);
-            }
         }
 
         void SetSlot()
@@ -85,135 +57,87 @@ namespace GameUI
 
             for (int i = 0; i < (int)CustomizationType.COUNT; i++)
             {
-                for (int j = 0; j < GetPartsCount((CustomizationType)i, gender); j++)
+                var type = (CustomizationType)i;
+
+                for (int j = 0; j < (gender == 0 ? malePartsCount[i] : femalePartsCount[i]); j++)
                 {
                     GameObject CustomizingSlotPrefab = Resources.Load<GameObject>(nameof(CustomizingSlot));
                     var newGO = Instantiate(CustomizingSlotPrefab, slotRoots[i]);
                     if (newGO.TryGetComponent<CustomizingSlot>(out var slot))
                     {
-                        var type = (CustomizationType)i;
-                        var id = (j + 1).ToString();
+                        var firstFormat = ((EGender)gender).ToString();
+                        var secondFormat = i == 3 ? $"" : $"{firstFormat[0]}_";
+                        var index = (i == 3 || i == 4) ? j + 1 : j;
+                        var id = $"{firstFormat}[{secondFormat}{type}{index}]";
+
                         slot.SlotInit(type, id);
-                        if(gender == 0)
-                            slot.OnClickAction = () => SelectOptionMale(type, id);
-                        else
-                            slot.OnClickAction = () => SelectOptionFemale(type, id);
+                        slot.OnClickAction = () => ApplyMesh(type, id);
                     }
                     slots.Add(newGO);
                 }
             }
         }
 
-        void SelectOptionMale(CustomizationType type, string id)
+        void ApplyMesh(CustomizationType type, string id)
         {
+            if (gender == 1 && type == CustomizationType.facialHair_) return;
+            
+            var value = Manager.Resource.Load<Mesh>(id);
+
             switch (type)
             {
-                case CustomizationType.EyeBrow:
-                    ApplyMaleEyeBrow(id);
+                case CustomizationType.eyebrows:
+                    eyebrowRoot.sharedMesh = value;
                     break;
-                case CustomizationType.Eye:
-                    ApplyMaleEye(id);
+                case CustomizationType.eyes:
+                    eyeRoot.sharedMesh = value;
                     break;
-                case CustomizationType.Mouth:
-                    ApplyMaleMouth(id);
+                case CustomizationType.mouth:
+                    mouthRoot.sharedMesh = value;
                     break;
-                case CustomizationType.FaceHair:
-                    ApplyMaleFaceHair(id);
+                case CustomizationType.facialHair_:
+                    facehairRoot.sharedMesh = value;
                     break;
-                case CustomizationType.Hair:
-                    ApplyMaleHair(id);
+                case CustomizationType.hair_:
+                    hairRoot.sharedMesh = value;
                     break;
             }
         }
 
-        void SelectOptionFemale(CustomizationType type, string id)
+        void InitMesh()
         {
-            switch (type)
+            for (int i = 0; i < (int)CustomizationType.COUNT; i++)
             {
-                case CustomizationType.EyeBrow:
-                    ApplyFemaleEyeBrow(id);
-                    break;
-                case CustomizationType.Eye:
-                    ApplyFemaleEye(id);
-                    break;
-                case CustomizationType.Mouth:
-                    ApplyFemaleMouth(id);
-                    break;
-                case CustomizationType.Hair:
-                    ApplyFemaleHair(id);
-                    break;
+                var type = (CustomizationType)i;
+                var firstFormat = ((EGender)gender).ToString();
+                var secondFormat = i == 3 ? $"" : $"{firstFormat[0]}_";
+                var index = (i == 3 || i == 4) ? 1 : 0;
+                var id = $"{firstFormat}[{secondFormat}{type}{index}]";
+
+                Debug.Log(id);
+                ApplyMesh(type, id);
             }
         }
 
-        #region Apply
-        void ApplyMaleEyeBrow(string id) => SetActiveOnly(id, maleEyebrowParts);
-        void ApplyMaleEye(string id) => SetActiveOnly(id, maleEyeParts);
-        void ApplyMaleMouth(string id) => SetActiveOnly(id, maleMouthParts);
-        void ApplyMaleFaceHair(string id) => SetActiveOnly(id, maleFacehairParts);
-        void ApplyMaleHair(string id) => SetActiveOnly(id, maleHairParts);
-
-        void ApplyFemaleEyeBrow(string id) => SetActiveOnly(id, femaleEyebrowParts);
-        void ApplyFemaleEye(string id) => SetActiveOnly(id, femaleEyeParts);
-        void ApplyFemaleMouth(string id) => SetActiveOnly(id, femaleMouthParts);
-        void ApplyFemaleHair(string id) => SetActiveOnly(id, femaleHairParts);
-        #endregion
-
-        void SetActiveOnly(string id, Dictionary<string, GameObject> dict)
-        {
-            foreach (var kv in dict)
-            {
-                kv.Value.SetActive(kv.Key == id);
-            }
-        }
-
-        int GetPartsCount(CustomizationType type, int gender)
-        {
-            if (gender == 0)
-            {
-                switch (type)
-                {
-                    case CustomizationType.EyeBrow:
-                        return maleEyebrowParts.Count;
-                    case CustomizationType.Eye:
-                        return maleEyeParts.Count;
-                    case CustomizationType.Mouth:
-                        return maleMouthParts.Count;
-                    case CustomizationType.FaceHair:
-                        return maleFacehairParts.Count;
-                    case CustomizationType.Hair:
-                        return maleHairParts.Count;
-                    default:
-                        return -1;
-                }
-            }
-            else
-            {
-                switch (type)
-                {
-                    case CustomizationType.EyeBrow:
-                        return femaleEyebrowParts.Count;
-                    case CustomizationType.Eye:
-                        return femaleEyeParts.Count;
-                    case CustomizationType.Mouth:
-                        return femaleMouthParts.Count;
-                    case CustomizationType.Hair:
-                        return femaleHairParts.Count;
-                    default:
-                        return -1;
-                }
-            }
-        }
-
+        #region Button Event
         public void ChangedGender()
         {
             gender = genderDropDown.value;
-            maleModel.SetActive(gender == 0);
-            femaleModel.SetActive(gender == 1);
             Manager.UserData.GetUserData<UserPlayerData>().SetGender(gender);
 
+            FacialHairObject.SetActive(gender == 0);
+            facehairRoot.enabled = gender == 1 ? false : true;
+
+            var curGender = ((EGender)gender).ToString();
+            model.sharedMesh = Manager.Resource.Load<Mesh>($"{curGender}[{curGender[0]}_Head]");
+
+            Manager.UserData.GetUserData<UserPlayerData>().SetGender(gender);
+
+            InitMesh();
             SetSlot();
         }
 
         public void OnClickStartButton() => Manager.Scene.LoadScene(Define.SceneType.GameScene);
+        #endregion
     }
 }

@@ -19,7 +19,6 @@ namespace GameUI
 
         public void OnClick()
         {
-            // TODO : 버튼 클릭을 통해 PlayeData에 CustomData를 저장한다. 
             Manager.UserData.GetUserData<UserPlayerData>().SetID(type, id);
             OnClickAction?.Invoke();
         }

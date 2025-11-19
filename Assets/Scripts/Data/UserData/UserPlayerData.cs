@@ -83,7 +83,6 @@ public class UserPlayerData : Security, IUserData
         {
             if (userCustomizingData[i].Type == (int)type)
             {
-                Debug.Log($"{GetType()} : 커스텀 데이터 설정 / {type} 존재");
                 userCustomizingData[i].Id = id;
                 found = true;
                 break;
@@ -92,7 +91,6 @@ public class UserPlayerData : Security, IUserData
 
         if (!found)
         {
-            Debug.Log($"{GetType()} : 커스텀 데이터 설정 / {type} 없음 → 새로 추가");
             userCustomizingData.Add(new((int)type, id));
         }
 
