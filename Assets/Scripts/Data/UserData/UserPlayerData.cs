@@ -36,7 +36,7 @@ public class PlayerData
 
     public PlayerData()
     {
-        PlayerTransform = new Vector3(-33.9f, 3.74f, -12.01f);
+        PlayerTransform = new Vector3(-35.0f, 4.0f, 10.01f);
         Rotation = Quaternion.identity;
         Time = 7f;
         Stemina = 100f;
