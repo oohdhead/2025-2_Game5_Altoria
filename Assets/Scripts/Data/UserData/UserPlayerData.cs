@@ -30,15 +30,13 @@ public class PlayerData
 {
     public Vector3 PlayerTransform;
     public Quaternion Rotation;
-    public float Stemina;
     public float Time;
     public int Gender;
 
     public PlayerData()
     {
-        PlayerTransform = Vector3.zero;
+        PlayerTransform = new Vector3(-33.9f, 3.74f, -12.01f);
         Rotation = Quaternion.identity;
-        Stemina = 100f;
         Time = 7f;
         Gender = 0;
     }
@@ -54,13 +52,18 @@ public class UserPlayerData : Security, IUserData
 
     #region player
     public PlayerData GetPlayerData() => userPlayerData;
-    public void SetDataTime(float time) => userPlayerData.Time = time;
-    public void SetDataPlayerPosition(Vector3 position, Quaternion quaternion)
+
+    public void SetTime(float time) => userPlayerData.Time = time;
+    public float GetTime() => userPlayerData.Time;
+
+    public void SetPlayerPosRo(Vector3 position, Quaternion quaternion)
     {
         userPlayerData.PlayerTransform = position;
         userPlayerData.Rotation = quaternion;
     }
-    public void SetDataStemina(float stemina) => userPlayerData.Stemina = stemina;
+    public Vector3 GetPlayerPosition() => userPlayerData.PlayerTransform;
+    public Quaternion GetPlayerQuaternion() => userPlayerData.Rotation;
+
     public void SetGender(int value) => userPlayerData.Gender = value;
     public int GetGender() => userPlayerData.Gender;
     #endregion

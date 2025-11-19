@@ -17,8 +17,6 @@ namespace Common
         CraftingController crafting = new();
         InventoryManager inventory = new();
 
-        public ETimeType timeType;
-
         public static GameSystem Instance { get { return instance; } }
         public static TimeController Time { get { return instance.time; } }
         public static RandomHellper Random { get { return instance.randomHellper; } }

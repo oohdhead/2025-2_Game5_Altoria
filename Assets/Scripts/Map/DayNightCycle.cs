@@ -29,6 +29,9 @@ public class DayNightCycle : MonoBehaviour
     float latitude = 37f;   // 위도
     float declination = 0f; // 태양 고도
 
+    float timeSaveCo0lTime = 10f;
+    float lastSaveTime = 0f;
+
     void Start()
     {
         skyboxMat = RenderSettings.skybox;
@@ -40,7 +43,6 @@ public class DayNightCycle : MonoBehaviour
 
         // TODO: 세이브 파일에서 시간 데이터 가져와서 설정하기
         time = 7f;
-        GameSystem.Instance.timeType = ETimeType.Day;
         timeSpeed = 24f / fullDayLength;
     }
 
@@ -62,7 +64,15 @@ public class DayNightCycle : MonoBehaviour
             UpdateSunPosition();
             UpdateSkybox(time);
         }
+
+        if(timeSaveCo0lTime + Time.deltaTime >= lastSaveTime)
+        {
+            SetData();
+            lastSaveTime = Time.deltaTime;
+        }
     }
+
+    public void InitTime(float time) => this.time = time;
 
     void UpdateSunPosition()
     {
@@ -145,5 +155,10 @@ public class DayNightCycle : MonoBehaviour
 
 
         DynamicGI.UpdateEnvironment();
+    }
+
+    void SetData()
+    {
+        Manager.UserData.GetUserData<UserPlayerData>().SetTime(time);
     }
 }
