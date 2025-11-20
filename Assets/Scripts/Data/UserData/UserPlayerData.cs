@@ -22,7 +22,7 @@ public class CustomData
 [Serializable]
 public class WrapperClassCustomDataList
 {
-    public List<CustomData> userCustomizingData;
+    public List<CustomData> UserCustomizingData;
 }
 
 [Serializable]
@@ -189,11 +189,11 @@ public class UserPlayerData : Security, IUserData
     {
         userCustomizingData = new()
         {
-            new (0, "1"),
-            new (1, "1"),
-            new (2, "1"),
-            new (3, "1"),
-            new (4, "1"),
+            new (0, "Male[M_eyebrows0]"),
+            new (1, "Male[M_eyes0]"),
+            new (2, "Male[M_mouth0]"),
+            new (3, "Male[facialHair_1]"),
+            new (4, "Male[M_hair_1]"),
         };
     }
 
@@ -211,7 +211,7 @@ public class UserPlayerData : Security, IUserData
             {
                 string loadJson = File.ReadAllText(custom_path);
                 var wrapper = JsonUtility.FromJson<WrapperClassCustomDataList>(loadJson);
-                userCustomizingData = wrapper.userCustomizingData;
+                userCustomizingData = wrapper.UserCustomizingData;
             }
 
             result = true;
@@ -231,7 +231,7 @@ public class UserPlayerData : Security, IUserData
         try
         {
             WrapperClassCustomDataList wrapper = new();
-            wrapper.userCustomizingData = userCustomizingData;
+            wrapper.UserCustomizingData = userCustomizingData;
             string jsonData = JsonUtility.ToJson(wrapper);
             File.WriteAllText(custom_path, jsonData);
             result = true;

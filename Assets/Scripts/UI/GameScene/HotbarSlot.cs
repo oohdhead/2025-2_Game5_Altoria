@@ -9,7 +9,6 @@ public class HotbarSlot : UpgradeSelectItem
 
     public void Bind(ItemData itemData)
     {
-        Debug.Log("HotbarSlot Bind: " + itemData.ID);
         ItemData = itemData;
         Init(itemData);
         item.SetActive(true);
