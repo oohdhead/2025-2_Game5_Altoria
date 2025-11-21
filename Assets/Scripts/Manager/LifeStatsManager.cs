@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameInteract;
 using Unity.VisualScripting;
+using GameData;
 
 public class LifeStatsManager
 {
@@ -13,7 +14,7 @@ public class LifeStatsManager
         { nameof(UpgradeInteractComponent), 0.3f },
     };
 
-    public LifeStatsManager() 
+    public LifeStatsManager()
     {
         lifeStats = Manager.UserData.GetUserData<UserLifeData>().GetUserLifeData();
     }
@@ -27,11 +28,15 @@ public class LifeStatsManager
         {
             if (lifeStats[i].LifeType == type)
             {
-                var preLevel = lifeStats[i].Level;
+                if (lifeStats[i].Level == 5) return;
+
                 lifeStats[i].Exp += amount;
 
-                if (preLevel != lifeStats[i].Level)
+                if (lifeStats[i].Exp >= GameDB.GetLifeExpData(lifeStats[i].Level))
+                {
+                    lifeStats[i].Level++;
                     levelUp = true;
+                }
 
                 break;
             }

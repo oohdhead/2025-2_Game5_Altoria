@@ -17,7 +17,8 @@ namespace GameData
         public static readonly UpgradeDatabase UpgradeDB;
         public static readonly CollectDatabase CollectDB;
         public static readonly FishDatabase FishDB;
-
+        public static readonly LifeLevelDatabase LifeDB;
+        
         static GameDB()
         {
             ItemDB = new ItemDatabase(new CsvLoader<ItemData>());
@@ -25,6 +26,7 @@ namespace GameData
             UpgradeDB = new UpgradeDatabase(new CsvLoader<UpgradeData>());
             CollectDB = new CollectDatabase(new JsonLoader<CollectData>());
             FishDB = new FishDatabase(new JsonLoader<FishData>());
+            LifeDB = new LifeLevelDatabase(new CsvLoader<LifeLevelData>());
         }
 
         public static async Task LoadAll()
@@ -34,6 +36,7 @@ namespace GameData
             await UpgradeDB.LoadAsync(nameof(UpgradeDatabase));
             await CollectDB.LoadAsync(nameof(CollectDatabase));
             await FishDB.LoadAsync(nameof(FishDatabase));
+            await LifeDB.LoadAsync(nameof(LifeLevelDatabase));
         }
 
         public static CustomDictionary<CraftingData>? GetCraftTypeData(CraftingType type)
@@ -46,6 +49,7 @@ namespace GameData
             => CollectDB.TryGetValue(id, out var data) ? data : null;
         public static CustomDictionary<FishData>? GetFishData(AreaType areaType)
             => FishDB.TryGetValue(areaType, out var data) ? data : null;
+        public static int? GetLifeExpData(int level) => LifeDB.TryGetValue(level, out var data) ? data.Exp : null;
     }
     public abstract class GameDatabase<TKey, TValue>
     {
@@ -239,6 +243,19 @@ namespace GameData
 
                     fishDict.Value[fishData.Area.ToString()] = fishData;
                 }
+            }
+        }
+    }
+
+    public class LifeLevelDatabase : GameDatabase<int, LifeLevelData>
+    {
+        public LifeLevelDatabase(ILoadStrategy<LifeLevelData> loader) : base(loader) { }
+        protected override void OnLoaded(IList<LifeLevelData> assets)
+        {
+            values.Clear();
+            for (int i = 0; i < assets.Count; i++)
+            {
+                values[assets[i].Level] = assets[i];
             }
         }
     }

@@ -74,3 +74,9 @@ public class FishData
     public AreaType Area;
     public List<FishGroup> FishGroups;
 }
+[System.Serializable]
+public class LifeLevelData
+{
+    public int Level;
+    public int Exp;
+}
