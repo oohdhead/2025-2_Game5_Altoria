@@ -43,9 +43,15 @@ namespace GameInteract
             for (int i = 0; i < data.CollectGroup.Count; i++)
                 probList.Add((data.CollectGroup[i], data.CollectGroup[i].Probability));
 
-            var item = GameSystem.Random.Pick(probList, GameDB.GetUpgradeData(GameSystem.Inventory.GetEquipItemLevel(Type)).Bous);
-            
             GameSystem.Life.AddExp<CollectInteractComponent>(10);
+
+            var equipData = GameSystem.Inventory.GetEquipItem(Type);
+            int bous = 0;
+            if (equipData != null)
+            {
+                bous = GameDB.GetUpgradeData(equipData.Level).Bous;
+            }
+            var item = GameSystem.Random.Pick(probList, bous);
 
             var popUp = Manager.UI.ShowPopup<GetItemPopUp>();
             popUp.SetData(objectID, item.Count);

@@ -1,4 +1,4 @@
-using Common;
+using CustomEditor;
 using GameInteract;
 using System;
 using System.Collections.Generic;
@@ -6,25 +6,43 @@ using System.IO;
 using UnityEngine;
 
 [Serializable]
-public class LifeDataDictionary
+public class LifeStatData
 {
-    public SerializableDictionary<string, LifeStatData> LifeData;
+    public string LifeType;
+    public int Level;
+    public int Exp;
+
+    public LifeStatData(string type, int level, int exp)
+    {
+        LifeType = type;
+        Level = level;
+        Exp = exp;
+    }
 }
 
+[Serializable]
+public class WrapperLifeStatDataList
+{
+    public List<LifeStatData> UserLifeData;
+}
+
+public class TotalLife { }
 
 public class UserLifeData : Security, IUserData
 {
+    public Action OnSaveAction;
+
     string path = Path.Combine(Application.dataPath, "lifeData.json");
     
-    Dictionary<string, LifeStatData> userLifeDataDic;
+    List<LifeStatData> userLifeData;
 
     public void SetDefaultData()
     {
-        userLifeDataDic = new ()
+        userLifeData = new ()
         {
-            { nameof(CollectInteractComponent), new ()},
-            { nameof(UpgradeInteractComponent), new ()},
-            { nameof(TotalLife), new ()}
+            new(nameof(CollectInteractComponent), 0, 0),
+            new(nameof(UpgradeInteractComponent), 0, 0),
+            new(nameof(TotalLife), 0, 0),
         };
     }
 
@@ -41,9 +59,9 @@ public class UserLifeData : Security, IUserData
             else // Load
             {
                 string loadJson = File.ReadAllText(path);
-                var loadData = JsonUtility.FromJson<LifeDataDictionary>(loadJson);
-                // var loadData = JsonUtility.FromJson<LifeDataDictionary>(Decrypt(loadJson, KEY));
-                userLifeDataDic = loadData.LifeData.ToDictionary();
+                var wrapperData = JsonUtility.FromJson<WrapperLifeStatDataList>(loadJson);
+                // var wrapperData = JsonUtility.FromJson<WrapperLifeStatDataList>(Decrypt(loadJson, KEY));
+                userLifeData = wrapperData.UserLifeData;
             }
 
             result = true;
@@ -62,8 +80,9 @@ public class UserLifeData : Security, IUserData
 
         try
         {
-            var saveData = new LifeDataDictionary { LifeData = new (GameSystem.Life.GetLifeStats()) };
-            string jsonData = JsonUtility.ToJson(saveData, true);
+            var wrapperData = new WrapperLifeStatDataList();
+            wrapperData.UserLifeData = userLifeData;
+            string jsonData = JsonUtility.ToJson(wrapperData);
             File.WriteAllText(path, jsonData);
             //File.WriteAllText(path, Encrypt(jsonData, KEY));
 
@@ -77,5 +96,7 @@ public class UserLifeData : Security, IUserData
         return result;
     }
 
-    public Dictionary<string, LifeStatData> GetUserLifeData() => userLifeDataDic;
+    public List<LifeStatData> GetUserLifeData() => userLifeData;
+
+    public void SetSaveDataAndSave(List<LifeStatData> dataList) => userLifeData = dataList;
 }

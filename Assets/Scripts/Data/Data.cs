@@ -12,7 +12,7 @@ public class ItemData
     public string ID;
     public string Name;
     public string SpriteAddress;
-    public ContentType content;
+    public ContentType Content;
     public ItemGrade Grade;
     public ItemType Type;
     [TextArea] public string Description;
@@ -73,4 +73,10 @@ public class FishData
 {
     public AreaType Area;
     public List<FishGroup> FishGroups;
+}
+[System.Serializable]
+public class LifeLevelData
+{
+    public int Level;
+    public int Exp;
 }

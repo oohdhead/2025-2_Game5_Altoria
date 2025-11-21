@@ -98,12 +98,19 @@ namespace GameInteract
 
         public void OnClickUpgradeBtn()
         {
-            // TODO: 강화석이 충분하다면 삭제, 아니면 강화석 부족 PopUp창 띄우기
-            var popUp = Manager.UI.ShowPopup<UpgradeResultPopUp>();
-            GameSystem.Life.AddExp<UpgradeInteractComponent>(10);
-            popUp.SetResult(selectItemData);
-            popUp.OnClosed += SetItemSlot;
-            popUp.OnClosed += () => SetUpgradeData(selectItemData);
+            int curCnt = GameSystem.Inventory.GetItem("10080072").count;
+            int needCnt = GameDB.GetUpgradeData(GameSystem.Inventory.GetEquipItem(selectItemData.Content).Level).Material;
+
+            if(curCnt < needCnt)
+                Manager.UI.ShowPopup<NoItemPopUp>();
+            else
+            {
+                var popUp = Manager.UI.ShowPopup<UpgradeResultPopUp>();
+                GameSystem.Life.AddExp<UpgradeInteractComponent>(10);
+                popUp.SetResult(selectItemData);
+                popUp.OnClosed += SetItemSlot;
+                popUp.OnClosed += () => SetUpgradeData(selectItemData);
+            }
         }
     }
 }

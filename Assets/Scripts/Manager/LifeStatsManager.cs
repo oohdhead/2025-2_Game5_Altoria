@@ -1,50 +1,14 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using CustomEditor;
 using GameInteract;
-
-[Serializable]
-public class LifeStatData
-{
-    [SerializeField] int level = 1;
-    [SerializeField] int exp = 0;
-
-    readonly List<int> levelThresholds = CsvLoader.LoadCsv<int>($"{Application.dataPath}/CSV/LevelThresholds.csv");
-
-    public LifeStatData() { }
-
-    public LifeStatData(int level, int exp)
-    {
-        this.level = level;
-        this.exp = exp;
-    }
-
-    public bool AddExp(int amount)
-    {
-        exp += amount;
-        bool leveledUp = false;
-
-        while (level < levelThresholds.Count && exp >= levelThresholds[level])
-        {
-            level++;
-            leveledUp = true;
-        }
-
-        return leveledUp;
-    }
-
-    public int GetLevel() => level;
-
-    public int GetEXP() => exp;
-}
-
-public class TotalLife { }
+using Unity.VisualScripting;
+using GameData;
 
 public class LifeStatsManager
 {
-    Dictionary<string, LifeStatData> lifeStats;
-    readonly Dictionary<string, float> weights = new ()
+    List<LifeStatData> lifeStats;
+
+    readonly Dictionary<string, float> weights = new()
     {
         { nameof(CollectInteractComponent), 0.7f },
         { nameof(UpgradeInteractComponent), 0.3f },
@@ -52,60 +16,89 @@ public class LifeStatsManager
 
     public LifeStatsManager()
     {
-        lifeStats = new Dictionary<string, LifeStatData>()
-        {
-            { nameof(CollectInteractComponent), new ()},
-            { nameof(UpgradeInteractComponent), new ()},
-            { nameof(TotalLife), new ()},
-        };
-        //SetData();
-    }
-
-    void SetData()
-    {
-        var userData = Manager.UserData.GetUserData<UserLifeData>();
-        if (userData == null)
-        {
-            Debug.LogError("[LifeStatsManager] UserData not initialized!");
-            return;
-        }
-        else
-        {
-            lifeStats = userData.GetUserLifeData();
-            Debug.Log($"[LifeStatsManager] Loaded {lifeStats.Count} life stats.");
-        }
+        lifeStats = Manager.UserData.GetUserData<UserLifeData>().GetUserLifeData();
     }
 
     public void AddExp<T>(int amount)
     {
         var type = typeof(T).Name;
-        Debug.Log(type);
-        if (!lifeStats.ContainsKey(type)) return;
+        bool levelUp = false;
 
-        bool levelUp = lifeStats[type].AddExp(amount);
+        for (int i = 0; i < lifeStats.Count; i++)
+        {
+            if (lifeStats[i].LifeType == type)
+            {
+                if (lifeStats[i].Level == 5) return;
 
-        SetTotalStat(type, amount, levelUp);
+                lifeStats[i].Exp += amount;
+
+                if (lifeStats[i].Exp >= GameDB.GetLifeExpData(lifeStats[i].Level))
+                {
+                    lifeStats[i].Level++;
+                    levelUp = true;
+                }
+
+                break;
+            }
+        }
+
+        SetTotalStat<T>(amount, levelUp);
     }
 
-    public int GetLevel<T>() => lifeStats[typeof(T).Name].GetLevel();
+    public int GetLevel<T>()
+    {
+        var type = typeof(T).Name;
 
-    public int GetEXP<T>() => lifeStats[typeof(T).Name].GetEXP();
 
-    void SetTotalStat(string type, int amount, bool levelUp)
+        for (int i = 0; i < lifeStats.Count; i++)
+        {
+            if (lifeStats[i].LifeType == type)
+            {
+                return lifeStats[i].Level;
+            }
+        }
+
+        return -1;
+    }
+
+    public int GetEXP<T>()
+    {
+        var type = typeof(T).Name;
+
+        for (int i = 0; i < lifeStats.Count; i++)
+        {
+            if (lifeStats[i].LifeType == type)
+            {
+                return lifeStats[i].Exp;
+            }
+        }
+
+        return -1;
+    }
+
+    void SetTotalStat<T>(int amount, bool levelUp)
     {
         int totalLevel = GetLevel<TotalLife>();
 
-        // ������ ���� ������ �ٸ� ���õ��� �÷��� ��Ȱ���� �ö󰣴�.
-        // ������ ��� �� �������� �� ���� ����ġ�� �����Ѵ�.
-        if (totalLevel != lifeStats[type].GetLevel() && !(levelUp && (totalLevel == lifeStats[type].GetLevel() - 1))) 
+        if (totalLevel != GetLevel<T>() && !(levelUp && (totalLevel == GetLevel<T>() - 1)))
             return;
 
-        if (!weights.ContainsKey(type))
-            return;
+        int addExp = Mathf.RoundToInt(weights[typeof(T).Name] * amount);
 
-        int addExp = Mathf.RoundToInt(weights[type] * amount);
-        bool _levelUp = lifeStats[nameof(TotalLife)].AddExp(addExp);
+        for (int i = 0; i < lifeStats.Count; i++)
+        {
+            if (lifeStats[i].LifeType == typeof(TotalLife).Name)
+            {
+                lifeStats[i].Exp += addExp;
+            }
+        }
+
+        Save();
     }
 
-    public Dictionary<string, LifeStatData> GetLifeStats() => lifeStats;
+    void Save()
+    {
+        Manager.UserData.GetUserData<UserLifeData>().SetSaveDataAndSave(lifeStats);
+        Manager.UserData.GetUserData<UserLifeData>().SaveData();
+    }
 }

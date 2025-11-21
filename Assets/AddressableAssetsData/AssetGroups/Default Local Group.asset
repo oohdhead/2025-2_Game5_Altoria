@@ -1065,6 +1065,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 27913c59f8c46e14fbabd6a7e1ccfa93
+    m_Address: 10054012
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 27ffd06ca5ea0f546b15c81b073c74f2
     m_Address: PP_Mushroom_Dark_Brown_05
     m_ReadOnly: 0
@@ -1162,6 +1167,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2a51cb63c584d01419c962ead673032e
     m_Address: PP_Stone Wall_Veins_02_Red
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2a6fc9a466e2fcb4e8ef2d73da62badf
+    m_Address: 10061016
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1267,6 +1277,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2db047b22b816ab4e8ad28f6c79837e4
     m_Address: Water_FishB
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e08d6ee565d65e44bb91a5d162cfb53
+    m_Address: 10021038
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1562,6 +1577,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 38eb2c5a242af684fb378ef2e30c35ee
     m_Address: PP_Gemstone_26_Copper
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 38ff987ec97de294fa8103daa8ac55e1
+    m_Address: LifeLevelDatabase
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -2355,6 +2375,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 544018b5b4351544fb86ad5674f99897
+    m_Address: 10055013
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5464c15ff9c6ca04cb5790c1773e76fa
     m_Address: MorningMat
     m_ReadOnly: 0
@@ -2457,6 +2482,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 57f73f0fbf15c5741b5809792fbdaa98
     m_Address: PP_Vine_03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 57fa76fd45db78c42a168b76ff27b37a
+    m_Address: 10021039
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -2762,6 +2792,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 631672b0bd8d2da43945f4a458f4f8ee
     m_Address: PP_Shield_02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6346859befb4362479c7709dd8ef090c
+    m_Address: 10022044
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -3185,6 +3220,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 74093510060238e4f9916651f9ae77ee
+    m_Address: 10074056
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7445ade67c97ca04d871dc88667393cb
     m_Address: PP_Tree_Root_07
     m_ReadOnly: 0
@@ -3242,6 +3282,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 769f082d15771b747ad6165cc10d85e0
     m_Address: PP_Tent_03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76ceefcc6e3e18c42a5eb72a9a73a75c
+    m_Address: 10024047
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -3575,6 +3620,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 82696ddfd9458f14fab84def8df9fef7
+    m_Address: 10023045
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 82771c280853e2d4abee6b9e8cf5ff6f
     m_Address: PP_Saw_Used_02_Silver
     m_ReadOnly: 0
@@ -3667,6 +3717,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 850dcd9c60311cb479e8f465dc27d250
     m_Address: PP_Mine_Cart_08
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 852aef4077bf21e41bc812cc04ef2cac
+    m_Address: 10021043
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -3880,8 +3935,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d23c2f7e7631934d90e312a6206031a
+    m_Address: 10021042
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8d45bce6503eb8a42a002baad159ac91
     m_Address: PP_Rock_Menhir_Moss_01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d63f419b4d618f4cba3708997895496
+    m_Address: 10023041
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -4082,6 +4147,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9522e77773fffb149b6741a7026b71c5
     m_Address: PP_Crystal_08_Silver
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 952bbff8fffcf4d49ba8037cafb3968e
+    m_Address: ItemDatabase
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -4572,6 +4642,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a5d3e0ba7a97fb4438d6c875d4e8439d
     m_Address: PP_Mushroom_Dark_Brown_07
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a606fa3a881cea9468a7d5dd1b14704d
+    m_Address: 10022040
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -5207,6 +5282,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bc9c5b39c1317ae428c9c57c648e8b94
     m_Address: PP_Gemstone_03_Red
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bcc69d41a43aeda4c88efdd4ad5616cc
+    m_Address: 10024046
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -5955,6 +6035,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d9c237aad8429004d885101cb4ac767a
+    m_Address: 10025049
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d9eff9b7105c51441b256f0b5acb89a9
+    m_Address: 10061015
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: da16bc0eecc5f354bab9823242bbc1e2
     m_Address: PP_Stone_Veins_02_Copper
     m_ReadOnly: 0
@@ -6460,6 +6550,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb7b1e64ed6bd2b48a5efcb4210b8b7c
+    m_Address: 10071064
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ebc726addf69f064ba01872c01397c84
     m_Address: PP_Pillar_Stone_Rune_02
     m_ReadOnly: 0
@@ -6670,6 +6765,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f477e676804d5f14f804df9eaba1a034
+    m_Address: DefaultFrame
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f48dad60d5098bc44a447ab3b1db1a5e
     m_Address: PP_Rail_07
     m_ReadOnly: 0
@@ -6702,11 +6802,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f530c64cf760e1444a8b5d5fd168b2fe
     m_Address: PP_Crystal_Column_04_Blue
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f546d854122c5934295cc3b3f21b1f0d
-    m_Address: ItemDatabase
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

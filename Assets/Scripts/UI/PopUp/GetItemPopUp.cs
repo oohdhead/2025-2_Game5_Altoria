@@ -1,4 +1,4 @@
-using Common;
+﻿using Common;
 using GameData;
 using System;
 using TMPro;
@@ -18,7 +18,7 @@ namespace GameUI
         {
             itemID = id;
             itemCount = count;
-            itemName.text = GameDB.GetItemData(id).Name;
+            itemName.text = $"'{GameDB.GetItemData(id).Name}' 획득";
 
             itemSlot.SetSlot(id, count);
         }
