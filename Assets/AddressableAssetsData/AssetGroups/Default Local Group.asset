@@ -1580,6 +1580,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 38ff987ec97de294fa8103daa8ac55e1
+    m_Address: LifeLevelDatabase
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 39ba253c6309bb446813e622ff6d80dc
     m_Address: PP_Gemstone_16_Copper
     m_ReadOnly: 0
