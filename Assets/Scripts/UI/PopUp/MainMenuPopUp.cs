@@ -55,7 +55,7 @@ public class MainMenuPopUp : UIPopUp
         var type = lifeTypes[index];
 
         // 레벨
-        stat.levelText.text = "LV " + GetLevel(type);
+        stat.levelText.text = "LV. " + GetLevel(type);
 
         // 경험치
         int exp = GetEXP(type);
