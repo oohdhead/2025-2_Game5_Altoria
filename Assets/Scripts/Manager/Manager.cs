@@ -35,8 +35,8 @@ public class Manager : MonoBehaviour
 
     async void InitManagers()
     {
-        await GameDB.LoadAll();
         UserData.Init();
+        await GameDB.LoadAll();
     }
 
 

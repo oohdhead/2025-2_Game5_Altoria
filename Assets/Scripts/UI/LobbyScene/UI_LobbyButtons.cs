@@ -22,17 +22,12 @@ namespace GameUI
         public void OnClickStartButton()
         {
             GameSystem.Init();
-
-            Manager.UI.HideHUD();
-            Instantiate(Resources.Load<GameObject>(nameof(CustomizingMenu)));
-        }
+            Manager.UI.ShowHUD<CustomizingMenu>();
+        }        
 
         public void OnClickSettingButton()
         {
-            //TODO:  ¼³Á¤Ã¢ ÆË¾÷
-            GameSystem.Init();
-            Manager.Scene.LoadScene(Define.SceneType.TestFC_1);
-            //Manager.UI.ShowPopup<SettingPopUp>();
+            Manager.UI.ShowPopup<SettingPopUp>();
         }
         public void OnClickExitButton()
         {

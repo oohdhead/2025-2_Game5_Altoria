@@ -1,8 +1,6 @@
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor.Build.Pipeline;
 using UnityEngine;
 using static Define;
 
@@ -23,6 +21,34 @@ public class CustomData
 public class WrapperClassCustomDataList
 {
     public List<CustomData> UserCustomizingData;
+}
+
+[Serializable]
+public class ColorData
+{
+    public int Index;
+    public string Name;
+    public Color Color;
+
+    public ColorData(string name, int index)
+    {
+        Name = name;
+        Color = Color.white;
+        Index = index;
+    }
+
+    public ColorData(string name, int index, Color color)
+    {
+        Name = name;
+        Color = color;
+        Index = index;
+    }
+}
+
+[Serializable]
+public class WrapperColorData
+{
+    public List<ColorData> UserColorData;
 }
 
 [Serializable]
@@ -48,9 +74,11 @@ public class UserPlayerData : Security, IUserData
 {
     string path = Path.Combine(Application.dataPath, "playerData.json");
     string custom_path = Path.Combine(Application.dataPath, "customData.json");
+    string color_path = Path.Combine(Application.dataPath, "colorData.json");
 
     PlayerData userPlayerData;
     List<CustomData> userCustomizingData;
+    List<ColorData> userColorData;
 
     #region player
     public PlayerData GetPlayerData() => userPlayerData;
@@ -106,27 +134,38 @@ public class UserPlayerData : Security, IUserData
     }
     #endregion
 
+    #region Color
+
+    public void SetColor(Color color, int index) => userColorData[index].Color = color;
+
+    public ColorData GetColor(int index) => userColorData[index];
+
+    #endregion
+
     #region All Data
     public void SetDefaultData()
     {
         PlayerSetDefaultData();
         CustomSetDefaultData();
+        ColorSetDefaultData();
     }
 
     public bool LoadData()
     {
-        var pR = PlayerLoadData();
-        var cR = CustomLoadData();
+        var playerResult = PlayerLoadData();
+        var customResult = CustomLoadData();
+        var colorResult = ColorLoadData();
 
-        return pR && cR;
+        return playerResult && customResult && colorResult;
     }
 
     public bool SaveData()
     {
-        var pR = PlayerSaveData();
-        var cR = CustomSaveData();
+        var playerResult = PlayerSaveData();
+        var customResult = CustomSaveData();
+        var colorResult = ColorSaveData();
 
-        return pR && cR;
+        return playerResult && customResult && colorResult;
     }
     #endregion
 
@@ -234,6 +273,68 @@ public class UserPlayerData : Security, IUserData
             wrapper.UserCustomizingData = userCustomizingData;
             string jsonData = JsonUtility.ToJson(wrapper);
             File.WriteAllText(custom_path, jsonData);
+            result = true;
+        }
+        catch (Exception e)
+        {
+            Debug.Log($"{GetType()} : Save failed ({e.Message})");
+        }
+
+        return result;
+    }
+    #endregion
+
+    #region Color Data
+    public void ColorSetDefaultData()
+    {
+        userColorData = new()
+        {
+            new("_Color1", 0, Color.black),
+            new("_Color2", 1),
+            new("_CorneaColor", 2),
+            new("_LipColor", 3),
+            new("_Color2", 4),
+            new("_Color2", 5)
+        };               
+    }                    
+                         
+    public bool ColorLoadData()
+    {
+        bool result = false;
+
+        try
+        {
+            if (!File.Exists(color_path)) // Create
+            {
+                ColorSetDefaultData();
+            }
+            else // Load
+            {
+                string loadJson = File.ReadAllText(color_path);
+                var wrapper = JsonUtility.FromJson<WrapperColorData>(loadJson);
+                userColorData = wrapper.UserColorData;
+            }
+
+            result = true;
+        }
+        catch (Exception e)
+        {
+            Debug.Log($"{GetType()} : Load failed ({e.Message})");
+        }
+
+        return result;
+    }
+
+    public bool ColorSaveData()
+    {
+        bool result = false;
+
+        try
+        {
+            WrapperColorData wrapper = new();
+            wrapper.UserColorData = userColorData;
+            string jsonData = JsonUtility.ToJson(wrapper);
+            File.WriteAllText(color_path, jsonData);
             result = true;
         }
         catch (Exception e)

@@ -5,7 +5,7 @@ using UnityEngine.Analytics;
 public class CharacterCustomizer : MonoBehaviour
 {
     [Header("Set Model")]
-    [SerializeField] SkinnedMeshRenderer hed;
+    [SerializeField] SkinnedMeshRenderer head;
     [SerializeField] SkinnedMeshRenderer topBody;
     [SerializeField] SkinnedMeshRenderer bottomBody;
     [SerializeField] SkinnedMeshRenderer[] partsModels;
@@ -13,13 +13,14 @@ public class CharacterCustomizer : MonoBehaviour
     void Awake()
     {
         SetModel();
+        SetColor();
     }
 
     void SetModel()
     {
         var gender = ((EGender)Manager.UserData.GetUserData<UserPlayerData>().GetGender()).ToString();
 
-        hed.sharedMesh = Manager.Resource.Load<Mesh>($"{gender}[{gender[0]}_Head]");
+        head.sharedMesh = Manager.Resource.Load<Mesh>($"{gender}[{gender[0]}_Head]");
         topBody.sharedMesh = Manager.Resource.Load<Mesh>($"{gender}[{gender[0]}_TopBody]");
         bottomBody.sharedMesh = Manager.Resource.Load<Mesh>($"{gender}[{gender[0]}_BottomBody]");
 
@@ -34,6 +35,22 @@ public class CharacterCustomizer : MonoBehaviour
             partsModels[i].sharedMesh = Manager.Resource.Load<Mesh>(
                 Manager.UserData.GetUserData<UserPlayerData>().GetID((Define.CustomizationType)i));
 
+        }
+    }
+
+    void SetColor()
+    {
+        for(int i = 0; i < 6; i++)
+        {
+            ColorData colorData = Manager.UserData.GetUserData<UserPlayerData>().GetColor(i);
+            if (i == 0)
+            {
+                head.material.SetColor(colorData.Name, colorData.Color);
+                topBody.material.SetColor(colorData.Name, colorData.Color);
+                bottomBody.material.SetColor(colorData.Name, colorData.Color);
+            }
+            else
+                partsModels[i - 1].material.SetColor(colorData.Name, colorData.Color);
         }
     }
 }

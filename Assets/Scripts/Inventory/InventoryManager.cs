@@ -119,10 +119,10 @@ public class InventoryManager
         {
             InventoryEntry newItem = new InventoryEntry(data.ID, data.Count, data.IsEquipped);
 
-            if(newItem.isEquipped)
-                equipItemList[newItem.item.ItemData.Content] = (EquipItem)newItem.item;
-
             inventory.Add(newItem);
+
+            if (newItem.isEquipped)
+                equipItemList[newItem.item.ItemData.Content] = (EquipItem)newItem.item;
         }
         Debug.Log("[InventoryManager] : 인벤토리 데이터 로드 완료");
     }
