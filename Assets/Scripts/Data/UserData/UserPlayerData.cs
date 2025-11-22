@@ -59,6 +59,7 @@ public class PlayerData
     public float Time;
     public float Stemina;
     public int Gender;
+    public bool Customed;
 
     public PlayerData()
     {
@@ -67,6 +68,7 @@ public class PlayerData
         Time = 7f;
         Stemina = 100f;
         Gender = 0;
+        Customed = false;
     }
 }
 
@@ -99,6 +101,9 @@ public class UserPlayerData : Security, IUserData
 
     public void SetGender(int value) => userPlayerData.Gender = value;
     public int GetGender() => userPlayerData.Gender;
+
+    public void SetCustomed() => userPlayerData.Customed = true;
+    public bool GetCustomed() => userPlayerData.Customed;
     #endregion
 
     #region Custom

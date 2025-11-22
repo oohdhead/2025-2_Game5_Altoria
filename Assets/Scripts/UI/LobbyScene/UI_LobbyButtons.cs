@@ -22,8 +22,15 @@ namespace GameUI
         public void OnClickStartButton()
         {
             GameSystem.Init();
-            Manager.UI.ShowHUD<CustomizingMenu>();
-        }        
+            if (!Manager.UserData.GetUserData<UserPlayerData>().GetCustomed())
+            {
+                Manager.UserData.GetUserData<UserPlayerData>().SetCustomed();
+                Manager.UI.ShowHUD<CustomizingMenu>();
+            }
+            else
+                Manager.Scene.LoadScene(Define.SceneType.GameScene);
+
+        }
 
         public void OnClickSettingButton()
         {
