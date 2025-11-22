@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using static Define;
 
 namespace GameUI
@@ -13,7 +14,7 @@ namespace GameUI
         Female,
     }
 
-    public class CustomizingMenu : MonoBehaviour
+    public class CustomizingMenu : UIHUD
     {
         [Header("Set UI Slot")]
         [SerializeField] List<Transform> slotRoots;

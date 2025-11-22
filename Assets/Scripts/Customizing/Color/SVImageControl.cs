@@ -2,56 +2,58 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SVImageControl : MonoBehaviour, IPointerClickHandler, IDragHandler
+namespace GameUI
 {
-    [SerializeField] Image pickerImage;
-
-    RawImage SVImage;
-    ColorPickerControl cC;
-    RectTransform rectTransform, pickerTransform;
-
-    void Awake()
+    public class SVImageControl : MonoBehaviour, IPointerClickHandler, IDragHandler
     {
-        SVImage = GetComponent<RawImage>();
-        cC = FindObjectOfType<ColorPickerControl>();
-        rectTransform = GetComponent<RectTransform>();
+        [SerializeField] Image pickerImage;
+        [SerializeField] ColorPickerControl pickerControl;
 
-        pickerTransform = pickerImage.GetComponent<RectTransform>();
-        pickerTransform.position = new Vector2(-(rectTransform.sizeDelta.x * 0.5f), -(rectTransform.sizeDelta.y * 0.5f));
-    }
+        RawImage SVImage;
+        RectTransform rectTransform, pickerTransform;
 
-    void UpdateColor(PointerEventData eventData)
-    {
-        Vector3 pos = rectTransform.InverseTransformPoint(eventData.position);
+        void Awake()
+        {
+            SVImage = GetComponent<RawImage>();
+            rectTransform = GetComponent<RectTransform>();
 
-        float deltaX = rectTransform.sizeDelta.x * 0.5f;
-        float deltaY = rectTransform.sizeDelta.y * 0.5f;
+            pickerTransform = pickerImage.GetComponent<RectTransform>();
+            pickerTransform.position = new Vector2(-(rectTransform.sizeDelta.x * 0.5f), -(rectTransform.sizeDelta.y * 0.5f));
+        }
 
-        if(pos.x < -deltaX) pos.x = -deltaX;
-        else if(pos.x > deltaX) pos.x = deltaX;
+        void UpdateColor(PointerEventData eventData)
+        {
+            Vector3 pos = rectTransform.InverseTransformPoint(eventData.position);
 
-        if(pos.y < -deltaY) pos.y = -deltaY;
-        else if(pos.y > deltaY) pos.y = deltaY;
+            float deltaX = rectTransform.sizeDelta.x * 0.5f;
+            float deltaY = rectTransform.sizeDelta.y * 0.5f;
 
-        float x = pos.x + deltaX;
-        float y = pos.y + deltaY;
+            if (pos.x < -deltaX) pos.x = -deltaX;
+            else if (pos.x > deltaX) pos.x = deltaX;
 
-        float xNorm = x / rectTransform.sizeDelta.x;
-        float yNorm = y / rectTransform.sizeDelta.y;
+            if (pos.y < -deltaY) pos.y = -deltaY;
+            else if (pos.y > deltaY) pos.y = deltaY;
 
-        pickerTransform.localPosition = pos;
-        pickerImage.color = Color.HSVToRGB(0, 0, 1 - yNorm);
+            float x = pos.x + deltaX;
+            float y = pos.y + deltaY;
 
-        cC.SetSV(xNorm, yNorm);
-    }
+            float xNorm = x / rectTransform.sizeDelta.x;
+            float yNorm = y / rectTransform.sizeDelta.y;
 
-    public void OnDrag(PointerEventData eventData)
-    {
-        UpdateColor(eventData);
-    }
+            pickerTransform.localPosition = pos;
+            pickerImage.color = Color.HSVToRGB(0, 0, 1 - yNorm);
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        UpdateColor(eventData);
+            pickerControl.SetSV(xNorm, yNorm);
+        }
+
+        public void OnDrag(PointerEventData eventData)
+        {
+            UpdateColor(eventData);
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            UpdateColor(eventData);
+        }
     }
 }

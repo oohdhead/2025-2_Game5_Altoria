@@ -17,6 +17,15 @@ public class LifeStatsManager
     public LifeStatsManager()
     {
         lifeStats = Manager.UserData.GetUserData<UserLifeData>().GetUserLifeData();
+        if (lifeStats == null)
+        {
+            lifeStats = new()
+            {
+                new(nameof(CollectInteractComponent), 0, 0),
+                new(nameof(UpgradeInteractComponent), 0, 0),
+                new(nameof(TotalLife), 0, 0),
+            };
+        }
     }
 
     public void AddExp<T>(int amount)
