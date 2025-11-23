@@ -395,6 +395,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0dd29c219ae9b734e9e2784136b40b7e
+    m_Address: 10075057
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0df23fd2dd96d2c41882c8dfb01961d1
     m_Address: PP_Mushroom_Long_Dark_Brown_09
     m_ReadOnly: 0
@@ -652,6 +657,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 15ee94f4c33901248afc29a1f76c6465
     m_Address: PP_Crate_Wooden_03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1628c2377056ecd499f15adde9537a9c
+    m_Address: 12225000
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1670,6 +1680,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3bb45e1e04ab88c4d8ed9039c573041c
+    m_Address: 10044036
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3bbbe18c33c05d5439714582f6ea50bd
     m_Address: PP_Coin_21_Blue
     m_ReadOnly: 0
@@ -1802,6 +1817,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 40afb84beed2d954d891cb97bfbdf88b
     m_Address: PP_Metal_Chain_07
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 40fbbc634301d5243a9bd5695c737952
+    m_Address: 10053009
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -2605,6 +2625,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5bdd8d795688698459ad08bde701df8b
+    m_Address: CraftDatabase
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5be83848efa3f6d4c9fdaa11215fb26b
     m_Address: PP_Bota_Bag_01
     m_ReadOnly: 0
@@ -2922,6 +2947,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 67fa0a12ffa3efa4884129d4d6a0b88d
     m_Address: PP_Candle_Holder_02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6835f13809ec3bd4ab9ac62bd711325e
+    m_Address: 12255000
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -3505,11 +3535,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7f41866f78a349b4fbaf2beca6a250d6
-    m_Address: CraftDatabase
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7f4cf92f2083faf4e86c3ec9244a8305
     m_Address: 10041031_2
     m_ReadOnly: 0
@@ -3805,6 +3830,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 878f147d34d567944abf0ea3c487b917
+    m_Address: 12254000
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 87b4aef87b6f4ef4eb11f50180de0c0b
     m_Address: PP_Blacksmith_Roof_14
     m_ReadOnly: 0
@@ -3897,6 +3927,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8c2fd1c181b142a4ab1cbc83879bc95d
     m_Address: PP_Gemstone_09_Red
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c3dec8b29cefae4f91c65d2e9c6285a
+    m_Address: 12265000
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -4370,6 +4405,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c09e772ef2123e41a5a56596543160f
+    m_Address: 10072069
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9c272a725858c2c439fd77c42ee5bf8c
     m_Address: GameScene
     m_ReadOnly: 0
@@ -4597,6 +4637,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a41e9cf56830eeb4e8137e0bdd90194c
     m_Address: PP_Cave_Tube_13
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a42518a46e3be0047bedf9abfebf987e
+    m_Address: 10073070
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -5150,8 +5195,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b70a8ac152ecc264db2516f0ecfbc569
+    m_Address: 12264000
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b762f7622f6d5e9458de96156516e91e
     m_Address: PP_Stone_Ground_12
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b76efe95489f77b4ca4bc040d33b9f84
+    m_Address: 12224000
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -5267,6 +5322,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bc00fd3a94d3e3b4e9df86cea442fae3
     m_Address: PP_Gemstone_10_Gold
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc57141b55695e749a6e2e1c762c459b
+    m_Address: 10042034
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -5537,6 +5597,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c6a7f5a95cdf721458762d85bab1f26d
     m_Address: PP_Crystal_Single_08_Iron
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c6b51146b1f90ca4e887fefc49f14ac9
+    m_Address: 12245000
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -5812,6 +5877,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d0983de7cf4983d45b4e9440e7cc44f1
     m_Address: PP_Rock_Pile_Moss_08
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0a9763ecbee1fc4d9b73e4d65d844ff
+    m_Address: 12244000
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -6580,6 +6650,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec7b9519fb6a38d458548fcf85aa2181
+    m_Address: 10025048
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ec9a22b982a548347a081f2743ba38ec
     m_Address: PP_Cactus_16
     m_ReadOnly: 0
@@ -6647,6 +6722,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: eef5549a8872e714cb271a78d401b135
     m_Address: PP_Wooden_Table_02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eef73b3d6b2d88d4c96a1e45c5841f85
+    m_Address: 10074071
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -6777,6 +6857,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f496d640d6c203e46a4257e5e4002f60
     m_Address: PP_Rock_Pile_Moss_02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f4babeaf915797e45ac81b539e6cb745
+    m_Address: 10043035
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
