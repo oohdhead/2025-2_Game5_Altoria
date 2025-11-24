@@ -10,7 +10,7 @@ public class PlayerInputHandler : MonoBehaviour
 
 
     public event Action<Vector2> OnMove;
-    public event Action OnMoveCanceled, OnJump, OnAttack, OnRiding;
+    public event Action OnMoveCanceled, OnJump, OnAttack, OnRiding, OnRun;
     public event Action OnInteract, OnInteractHold, OnInteractCanceled;
     public event Action<Vector2> OnLook;
     public event Action<bool> OnCursorLockChanged;
@@ -53,7 +53,8 @@ public class PlayerInputHandler : MonoBehaviour
         playerActions.Look.performed += OnLookPerformed;
         playerActions.Look.canceled += OnLookCanceled;
         playerActions.Riding.started += OnRidingPreformed;
-
+        playerActions.Run.performed += OnRunPerfomed;
+ 
      
         playerActions.Interact.started += ctx => OnInteract?.Invoke();         
         playerActions.Interact.performed += ctx => OnInteractHold?.Invoke();    
@@ -65,6 +66,11 @@ public class PlayerInputHandler : MonoBehaviour
         uiActions.AltCursor.performed += _ => ToggleAltMode();
     }
 
+    private void OnRunPerfomed(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
+    }
+
     void UnbindInputs()
     {
         playerActions.Move.performed -= OnMovePerformed;
@@ -74,7 +80,7 @@ public class PlayerInputHandler : MonoBehaviour
         playerActions.Look.performed -= OnLookPerformed;
         playerActions.Look.canceled -= OnLookCanceled;
         playerActions.Riding.started -= OnRidingPreformed;
-
+        playerActions.Run.performed -= OnRunPerfomed;
         playerActions.Interact.started -= ctx => OnInteract?.Invoke();
         playerActions.Interact.performed -= ctx => OnInteractHold?.Invoke();
         playerActions.Interact.canceled -= ctx => OnInteractCanceled?.Invoke();

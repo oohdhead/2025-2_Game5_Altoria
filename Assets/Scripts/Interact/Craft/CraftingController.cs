@@ -1,3 +1,4 @@
+using Common;
 using GameInteract;
 using NUnit.Framework;
 using System;
@@ -59,7 +60,7 @@ public class CraftingSlot
 public class CraftingController 
 {
     readonly Dictionary<CraftingType, List<CraftingSlot>> slots;
-    readonly Dictionary<CraftingType, Dictionary<int, ItemData>> completedByType = new();
+    readonly Dictionary<CraftingType, Dictionary<int, ItemEntry>> completedByType = new();
 
     public CraftingController()
     {
@@ -96,17 +97,17 @@ public class CraftingController
     {
         if (!completedByType.TryGetValue(data.Type, out var dict))
         {
-            dict = new Dictionary<int, ItemData>();
+            dict = new();
             completedByType[data.Type] = dict;
         }
 
-        ItemData resultItem = recipe.ResultItem.Item;
-        dict[data.SlotIndex] = resultItem;
+        ItemEntry resultEntry = recipe.ResultItem;
+        dict[data.SlotIndex] = resultEntry;
 
         GlobalEvents.Instance.Publish(new CraftingCompletedEvent(
             data.Type,
-            data.SlotIndex,
-            resultItem
+            resultEntry,
+            data.SlotIndex
         ));
 
         if (TryGetSlot(data.Type, data.SlotIndex, out var slot))
@@ -116,19 +117,16 @@ public class CraftingController
 
     public ItemData GetCompletedItem(CraftingType type, int slotIndex)
     {
-        if (!completedByType.TryGetValue(type, out var dict))
-            return null;
+        if (!completedByType.TryGetValue(type, out var dict)) return null;
 
-        if (!dict.TryGetValue(slotIndex, out var item))
-            return null;
-        //TODO : 인벤과 연결 
-        dict[slotIndex] = null;
+        if (!dict.TryGetValue(slotIndex, out var item)) return null;
 
-        if (dict.Count == 0)
-            completedByType.Remove(type);
 
+        GameSystem.Inventory.AddItem(item.Item.ID, item.Value);
+        dict[slotIndex] = item;
+        if (dict.Count == 0) completedByType.Remove(type);
         slots[type][slotIndex].Reset();
-        return item;
+        return item.Item;
     }
     bool TryGetSlot(CraftingType type, int index, out CraftingSlot slot)
     {
