@@ -31,7 +31,16 @@ namespace GameInteract
     {
         void OnMoveInput(Vector2 dir);
         void OnMoveCancel();
+    }
+    public interface IJumper
+    {
         void OnJumpInput();
+    }
+    public interface IRunner
+    {
+        void OnRunInput();
+        void OnRunCancel();
+
     }
     public  interface IInteractStay { void HoldInteract(); }
     public interface IInteractDelay { float Delay { get; } }

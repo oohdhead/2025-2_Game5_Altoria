@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using static Define;
 
 [RequireComponent(typeof(PlayerInputHandler))]
-public class PlayerController : BaseEntityComponent, IPlayerMovable, IMoveInput, IInteractInput, IRidingInput
+public class PlayerController : BaseEntityComponent, IPlayerMovable, IMoveInput, IInteractInput, IRidingInput,IJumper,IRunner
 {
     [SerializeField] Animator animator;
     [SerializeField] SocketHandler socketHandler;
@@ -78,7 +78,7 @@ public class PlayerController : BaseEntityComponent, IPlayerMovable, IMoveInput,
     public void OnMoveInput(Vector2 inputDir)
     {
         if (!State.CanReceiveInput()) return;
-
+        
         moveHandler.SetInput(inputDir);
         animController.SetBool("IsMove", true);
         State.SetState(PlayerState.Move);
@@ -86,8 +86,6 @@ public class PlayerController : BaseEntityComponent, IPlayerMovable, IMoveInput,
 
     public void OnMoveCancel()
     {
-        if (!State.CanReceiveInput()) return;
-
         moveHandler.SetInput(Vector2.zero);
         StopMove();
     }
@@ -97,6 +95,16 @@ public class PlayerController : BaseEntityComponent, IPlayerMovable, IMoveInput,
         animController.SetBool("IsMove", false);
         Move.SetMoveInput(Vector3.zero);
         State.SetState(PlayerState.Idle);
+    }
+    public void OnRunInput()
+    {
+        State.AddState(PlayerState.Run);
+        animController.SetBool("IsRun", true);
+    }
+    public void OnRunCancel()
+    {
+        State.RemoveState(PlayerState.Run);
+        animController.SetBool("IsRun", false);
     }
     #endregion
 
@@ -122,6 +130,7 @@ public class PlayerController : BaseEntityComponent, IPlayerMovable, IMoveInput,
         Move.Jump();
         State.SetState(PlayerState.Jump);
     }
+
     #endregion
 
     #region Interact
@@ -160,7 +169,6 @@ public class PlayerController : BaseEntityComponent, IPlayerMovable, IMoveInput,
 
     public void OnInteractEnd()
     {
-        State.RemoveState(PlayerState.Idle);
         animController.BlendLayerWeight(1, animController.GetLayerWeight(1), 0f, 0.3f);
     }
     #endregion
@@ -198,8 +206,8 @@ public class PlayerController : BaseEntityComponent, IPlayerMovable, IMoveInput,
 
         if (mounted)
         {
-            if (mount is IMoveInput mountInput)
-                inputBinder.Bind(mountInput);
+            if (mount is IMoveInput mountInput) inputBinder.Bind(mountInput);
+
             cameraHandler.SetCamera("RidingCamera");
             animController.SetBool("IsRiding", true);
             State.AddState(PlayerState.Riding);
@@ -226,4 +234,6 @@ public class PlayerController : BaseEntityComponent, IPlayerMovable, IMoveInput,
 
     public void OnSpawnTool(int contentType) => socketHandler.SpawnTool(contentType);
     public void OnDespawnTool() => socketHandler.DespawnTool();
+
+   
 }
