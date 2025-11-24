@@ -3,6 +3,7 @@ using UnityEngine;
 using GameItem;
 using GameInventory;
 using GameData;
+using UnityEditor;
 
 public class InventoryManager 
 {
@@ -145,6 +146,10 @@ public class InventoryManager
 
             inventoryData.rows.Add(data);
         }
+#if UNITY_EDITOR          // 에디터에서만 저장 가능
+        EditorUtility.SetDirty(inventoryData);
+        AssetDatabase.SaveAssets();
+#endif
         Debug.Log("[InventoryManager] : 인벤토리 데이터 세이브 완료");
     }
 }
