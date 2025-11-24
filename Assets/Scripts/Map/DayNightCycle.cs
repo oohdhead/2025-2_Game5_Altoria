@@ -29,7 +29,7 @@ public class DayNightCycle : MonoBehaviour
     float latitude = 37f;   // 위도
     float declination = 0f; // 태양 고도
 
-    float timeSaveCo0lTime = 10f;
+    float timeSaveCoolTime = 30f;
     float lastSaveTime = 0f;
 
     void Start()
@@ -65,7 +65,7 @@ public class DayNightCycle : MonoBehaviour
             UpdateSkybox(time);
         }
 
-        if(timeSaveCo0lTime + Time.deltaTime >= lastSaveTime)
+        if(timeSaveCoolTime + Time.deltaTime >= lastSaveTime)
         {
             SetData();
             lastSaveTime = Time.deltaTime;
