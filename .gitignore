@@ -32,6 +32,8 @@
 *.DotSettings.user
 # ignore @Resources Folder
 /[Aa]ssets/@Resources/
+# ignore Sprites Folder
+/[Aa]ssets/Sprites
 # Visual Studio cache directory
 .vs/
 
