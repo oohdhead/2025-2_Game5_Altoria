@@ -48,7 +48,7 @@ public class GameScene : BaseScene
             loadingUI.StartLoding(loader);
 
 
-            loadingUI.OnClosed += PlayerLoad;
+            loadingUI.OnEndLoad += PlayerLoad;
             if(!Manager.UserData.GetUserData<UserPlayerData>().GetFirstGift())
                 loadingUI.OnClosed += FirstGift;
         };

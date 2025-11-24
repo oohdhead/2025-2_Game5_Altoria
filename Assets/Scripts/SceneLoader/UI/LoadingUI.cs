@@ -18,6 +18,8 @@ namespace SceneLoade
         UnityEngine.AsyncOperation _asyncOperation;
         JsonMapLoader currentMapLoader;
 
+        public event Action OnEndLoad;
+
         void Awake()
         {
             progressImage.fillAmount = 0;
@@ -56,6 +58,13 @@ namespace SceneLoade
             currentMapLoader.OnProgress -= UpdateProgress;
             currentMapLoader.OnSuccess -= OnLoadSuccess;
             currentMapLoader.OnFailure -= OnLoadFailure;
+            OnEndLoad?.Invoke();
+            StartCoroutine(WaitEndLoading());
+        }
+
+        IEnumerator WaitEndLoading()
+        {
+            yield return new WaitForSeconds(1f);
             Manager.UI.ClosePopup(this);
         }
     }
