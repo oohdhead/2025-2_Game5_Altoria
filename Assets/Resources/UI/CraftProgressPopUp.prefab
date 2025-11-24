@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSlot: {fileID: 3581487223103896245}
-  rewardButton: {fileID: 0}
+  rewardButton: {fileID: 1215925075627018553}
   progressText: {fileID: 7443702993147170845}
 --- !u!114 &1276023496989326224
 MonoBehaviour:
@@ -882,6 +882,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa44e2d22cc677445a01021793df2389, type: 3}
+--- !u!114 &1215925075627018553 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7194750774597323411, guid: fa44e2d22cc677445a01021793df2389, type: 3}
+  m_PrefabInstance: {fileID: 8288653958682641322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3084776524091299517 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6469532171354182935, guid: fa44e2d22cc677445a01021793df2389, type: 3}
