@@ -1,0 +1,20 @@
+{
+  "rows": [
+    {
+      "Type": "CollectInteractComponent",
+      "Counts": [{"Count":"10"},{"Count":"20"},{"Count":"50"},{"Count":"80"},{"Count":"120"}]
+    },
+    {
+      "Type": "UpgradeInteractComponent",
+      "Counts": [{"Count":"15"},{"Count":"25"},{"Count":"60"},{"Count":"100"},{"Count":"140"}]
+    },
+    {
+      "Type": "CraftInteractComponent",
+      "Counts": [{"Count":"15"},{"Count":"25"},{"Count":"50"},{"Count":"85"},{"Count":"130"}]
+    },
+    {
+      "Type": "TotalLife",
+      "Counts": [{"Count":"30"},{"Count":"60"},{"Count":"120"},{"Count":"200"},{"Count":"260"}]
+    }
+  ]
+}

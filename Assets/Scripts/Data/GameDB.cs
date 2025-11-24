@@ -18,7 +18,8 @@ namespace GameData
         public static readonly CollectDatabase CollectDB;
         public static readonly FishDatabase FishDB;
         public static readonly LifeLevelDatabase LifeDB;
-        
+        public static readonly AchieveDatabase AchievDB;
+
         static GameDB()
         {
             ItemDB = new ItemDatabase(new CsvLoader<ItemData>());
@@ -27,6 +28,7 @@ namespace GameData
             CollectDB = new CollectDatabase(new JsonLoader<CollectData>());
             FishDB = new FishDatabase(new JsonLoader<FishData>());
             LifeDB = new LifeLevelDatabase(new CsvLoader<LifeLevelData>());
+            AchievDB = new AchieveDatabase(new JsonLoader<AchieveData>());
         }
 
         public static async Task LoadAll()
@@ -37,6 +39,7 @@ namespace GameData
             await CollectDB.LoadAsync(nameof(CollectDatabase));
             await FishDB.LoadAsync(nameof(FishDatabase));
             await LifeDB.LoadAsync(nameof(LifeLevelDatabase));
+            await AchievDB.LoadAsync(nameof(AchieveDatabase));
         }
 
         public static CustomDictionary<CraftingData>? GetCraftTypeData(CraftingType type)
@@ -49,7 +52,9 @@ namespace GameData
             => CollectDB.TryGetValue(id, out var data) ? data : null;
         public static CustomDictionary<FishData>? GetFishData(AreaType areaType)
             => FishDB.TryGetValue(areaType, out var data) ? data : null;
-        public static int? GetLifeExpData(int level) => LifeDB.TryGetValue(level, out var data) ? data.Exp : null;
+        public static int? GetLifeExpData(int level) => LifeDB.TryGetValue(level, out var data) ? data.NeedExp : null;
+        public static AchieveData? GetAchieveData(string type)
+            => AchievDB.TryGetValue(type, out var data) ? data : null;
     }
     public abstract class GameDatabase<TKey, TValue>
     {
@@ -74,7 +79,7 @@ namespace GameData
 
     public class CraftDatabase : GameDatabase<CraftingType, CustomDictionary<CraftingData>>
     {
-         readonly ILoadStrategy<CraftingData> innerLoader;
+        readonly ILoadStrategy<CraftingData> innerLoader;
 
         public CraftDatabase(ILoadStrategy<CraftingData> loader) : base(null!)
         {
@@ -256,6 +261,19 @@ namespace GameData
             for (int i = 0; i < assets.Count; i++)
             {
                 values[assets[i].Level] = assets[i];
+            }
+        }
+    }
+
+    public class AchieveDatabase : GameDatabase<string, AchieveData>
+    {
+        public AchieveDatabase(ILoadStrategy<AchieveData> loader) : base(loader) { }
+        protected override void OnLoaded(IList<AchieveData> assets)
+        {
+            values.Clear();
+            for (int i = 0; i < assets.Count; i++)
+            {
+                values[assets[i].Type] = assets[i];
             }
         }
     }

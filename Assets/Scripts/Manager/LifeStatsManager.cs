@@ -1,17 +1,21 @@
-using System.Collections.Generic;
-using UnityEngine;
-using GameInteract;
-using Unity.VisualScripting;
+using Common;
 using GameData;
+using GameInteract;
+using GameUI;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class LifeStatsManager
 {
     List<LifeStatData> lifeStats;
+    const string reward = "10080072";
 
     readonly Dictionary<string, float> weights = new()
     {
-        { nameof(CollectInteractComponent), 0.7f },
+        { nameof(CollectInteractComponent), 0.4f },
         { nameof(UpgradeInteractComponent), 0.3f },
+        { nameof(CraftInteractComponent), 0.3f },
     };
 
     public LifeStatsManager()
@@ -23,6 +27,7 @@ public class LifeStatsManager
             {
                 new(nameof(CollectInteractComponent), 0, 0),
                 new(nameof(UpgradeInteractComponent), 0, 0),
+                new(nameof(CraftInteractComponent), 0, 0),
                 new(nameof(TotalLife), 0, 0),
             };
         }
@@ -43,6 +48,9 @@ public class LifeStatsManager
 
                 if (lifeStats[i].Exp >= GameDB.GetLifeExpData(lifeStats[i].Level))
                 {
+                    var count = GameDB.GetAchieveData(type).Counts[lifeStats[i].Level]; 
+                    GameSystem.Inventory.AddItem(reward, count);
+
                     lifeStats[i].Level++;
                     levelUp = true;
                 }
@@ -89,9 +97,6 @@ public class LifeStatsManager
     {
         int totalLevel = GetLevel<TotalLife>();
 
-        if (totalLevel != GetLevel<T>() && !(levelUp && (totalLevel == GetLevel<T>() - 1)))
-            return;
-
         int addExp = Mathf.RoundToInt(weights[typeof(T).Name] * amount);
 
         for (int i = 0; i < lifeStats.Count; i++)
@@ -99,6 +104,14 @@ public class LifeStatsManager
             if (lifeStats[i].LifeType == typeof(TotalLife).Name)
             {
                 lifeStats[i].Exp += addExp;
+
+                if (lifeStats[i].Exp >= GameDB.GetLifeExpData(lifeStats[i].Level))
+                {
+                    var count = GameDB.GetAchieveData(typeof(TotalLife).Name).Counts[lifeStats[i].Level];
+                    GameSystem.Inventory.AddItem(reward, count);
+
+                    lifeStats[i].Level++;
+                }
             }
         }
 

@@ -60,6 +60,7 @@ public class PlayerData
     public float Stemina;
     public int Gender;
     public bool Customed;
+    public bool FirstGift;
 
     public PlayerData()
     {
@@ -69,6 +70,7 @@ public class PlayerData
         Stemina = 100f;
         Gender = 0;
         Customed = false;
+        FirstGift = false;
     }
 }
 
@@ -104,6 +106,13 @@ public class UserPlayerData : Security, IUserData
 
     public void SetCustomed() => userPlayerData.Customed = true;
     public bool GetCustomed() => userPlayerData.Customed;
+
+    public void SetFirstGift()
+    {
+        userPlayerData.FirstGift = true;
+        PlayerSaveData();
+    }
+    public bool GetFirstGift() => userPlayerData.FirstGift;
     #endregion
 
     #region Custom

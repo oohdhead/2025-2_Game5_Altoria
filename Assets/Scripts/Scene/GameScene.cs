@@ -1,4 +1,4 @@
-using Common;
+﻿using Common;
 using GameUI;
 using SceneLoad;
 using SceneLoade;
@@ -49,6 +49,8 @@ public class GameScene : BaseScene
 
 
             loadingUI.OnClosed += PlayerLoad;
+            if(!Manager.UserData.GetUserData<UserPlayerData>().GetFirstGift())
+                loadingUI.OnClosed += FirstGift;
         };
     }
 
@@ -79,5 +81,13 @@ public class GameScene : BaseScene
     {
       
         Debug.Log("GameScene Destroyed.");
+    }
+
+    void FirstGift()
+    {
+        Manager.UserData.GetUserData<UserPlayerData>().SetFirstGift();
+        var popUp = Manager.UI.ShowPopup<GetItemPopUp>();
+        popUp.SetData("10080072", 10);
+        popUp.SetEtcText("선물이 도착했습니다!");
     }
 }

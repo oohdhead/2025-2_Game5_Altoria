@@ -2635,6 +2635,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5c7f673ec1396e248974915847920a67
+    m_Address: AchieveDatabase
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5c8945e7f3fe2d448967e9671c444928
     m_Address: PP_Crystal_02_Green
     m_ReadOnly: 0
@@ -5527,6 +5532,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c372b7f13a109ed4ba057b8cd1f11ef5
     m_Address: PP_Tree_Trunk_02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c3952b95a7505c24595179db15a1fdbd
+    m_Address: 10045037
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
