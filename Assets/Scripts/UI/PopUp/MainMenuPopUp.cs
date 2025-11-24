@@ -128,9 +128,4 @@ public class MainMenuPopUp : UIPopUp
         Manager.UI.ShowPopup<ExitPopUp>().SetPopUpType(ExitPopUpType.ExitGame);
         Debug.Log("[MainMenuPopUp] : 종료창");
     }
-
-    public void ClosePopUp()
-    {
-        Manager.UI.ClosePopup();
-    }
 }

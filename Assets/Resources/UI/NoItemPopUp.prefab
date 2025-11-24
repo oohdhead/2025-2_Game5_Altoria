@@ -401,6 +401,7 @@ GameObject:
   - component: {fileID: 4724627450424729163}
   - component: {fileID: 2657908800979859192}
   - component: {fileID: 3453602911814264956}
+  - component: {fileID: 5365881510172921862}
   m_Layer: 5
   m_Name: OKButton
   m_TagString: Untagged
@@ -509,19 +510,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 710582003907603279}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6930167462411228264}
-        m_TargetAssemblyTypeName: GameUI.UIPopUp, Assembly-CSharp
-        m_MethodName: Close
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!95 &2657908800979859192
 Animator:
   serializedVersion: 7
@@ -641,6 +630,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5365881510172921862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7164148285648752116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d8a11564f5ac7041ad11ccd7c89a0b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8910137628619568431
 GameObject:
   m_ObjectHideFlags: 0

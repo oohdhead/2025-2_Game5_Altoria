@@ -20,6 +20,7 @@ namespace GameUI
             itemID = id;
             itemCount = count;
             itemName.text = $"'{GameDB.GetItemData(id).Name}' 획득";
+            GameSystem.Inventory.AddItem(itemID, itemCount);
 
             itemSlot.SetSlot(id, count);
         }
@@ -28,12 +29,6 @@ namespace GameUI
         {
             etcTxt.text = text;
             etcTxt.gameObject.SetActive(true);
-        }
-
-        public void OnClickOKButton()
-        {
-            GameSystem.Inventory.AddItem(itemID, itemCount);
-            Close();
         }
     }
 }

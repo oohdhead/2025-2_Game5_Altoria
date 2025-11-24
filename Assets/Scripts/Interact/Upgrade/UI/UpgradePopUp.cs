@@ -98,7 +98,14 @@ namespace GameInteract
 
         public void OnClickUpgradeBtn()
         {
-            int curCnt = GameSystem.Inventory.GetItem("10080072").count;
+            var item = GameSystem.Inventory.GetItem(upgradeMaterialID);
+            if(item == null)
+            { 
+                Manager.UI.ShowPopup<NoItemPopUp>();
+                return;
+            }
+
+            int curCnt = item.count;
             int needCnt = GameDB.GetUpgradeData(GameSystem.Inventory.GetEquipItem(selectItemData.Content).Level).Material;
 
             if(curCnt < needCnt)
@@ -106,6 +113,7 @@ namespace GameInteract
             else
             {
                 var popUp = Manager.UI.ShowPopup<UpgradeResultPopUp>();
+                GameSystem.Inventory.RemoveItem(upgradeMaterialID, needCnt);
                 GameSystem.Life.AddExp<UpgradeInteractComponent>(10);
                 popUp.SetResult(selectItemData);
                 popUp.OnClosed += SetItemSlot;
