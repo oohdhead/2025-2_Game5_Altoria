@@ -3,6 +3,7 @@ using UnityEngine;
 using GameItem;
 using GameInventory;
 using GameData;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public class InventoryManager 
 {
@@ -81,7 +82,13 @@ public class InventoryManager
         return true;
     }
 
+    public bool CheckItemCount(string itemID,int count)
+    {
+        var entry = GetItem(itemID);
+        if (entry == null) return false;
 
+        return entry.count >= count;
+    }
     public InventoryEntry GetItem(string itemID)
     {
         return inventory.Find(x => x.item.ItemData.ID == itemID);

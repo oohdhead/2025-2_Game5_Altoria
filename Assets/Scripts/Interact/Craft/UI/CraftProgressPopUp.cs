@@ -27,10 +27,8 @@ namespace GameInteract
         {
             itemSlot.SetSlot(spriteAddress, count);
 
-            
             rewardButton.gameObject.SetActive(state == CraftingState.Completed);
-           
-
+          
             progressText.text = textDict.TryGetValue(state, out var text) ? text : "";
         }
 

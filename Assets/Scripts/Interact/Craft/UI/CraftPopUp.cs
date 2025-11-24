@@ -55,19 +55,36 @@ namespace GameInteract
             float time = handler.GetCraftingData(slotIndex).Time;
             List<ItemEntry> ingredients = handler.GetIngredients(slotIndex);
 
-            CraftRecipePopUp  popUp= Manager.UI.ShowPopup<CraftRecipePopUp>();
-            popUp.SetRecipe(resultItem, ingredients,time);
+          
+            CraftRecipePopUp popUp = Manager.UI.ShowPopup<CraftRecipePopUp>();
+            popUp.SetRecipe(resultItem, ingredients, time);
+
             popUp.OnCraftButtonClicked += () =>
             {
-                if(CheckEmptySlot())
-                OnProgressStart(slotIndex);
+                if (CheckEmptySlot())
+                {
+                    for (int i = 0; i < ingredients.Count; i++)
+                    {
+                        var entry = ingredients[i];
+                        bool enough = GameSystem.Inventory.CheckItemCount(entry.Item.ID, entry.Value);
+
+                        if (!enough)
+                        {
+                            Manager.UI.ShowPopup<AlertPopUp>().SetMessage("재료가 부족합니다!");
+                            return;
+                        }
+                    }
+                    OnProgressStart(slotIndex);
+                }
                 else
                 {
-                    //todo : 현재 칸이 부족하다는 알림창 
+                    Manager.UI.ShowPopup<AlertPopUp>().SetMessage("제작 슬롯이 부족합니다");
+                    return;
                 }
             };
         }
-        
+
+
         void RefreshProgressSlots()
         {
             List<CraftingSlot> craftingSlots = GameSystem.Instance.GetCurrentCraftingSlots(type);
