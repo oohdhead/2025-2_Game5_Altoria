@@ -19,6 +19,11 @@ public class PlayerInteractComponent : MonoBehaviour
     Collider[] hitBuffer;
     IInteractable currentTarget;
 
+    // Nearby Interactable
+    bool hasNearbyInteractable;
+    public event Action<bool> OnInteractableNearby; //상태가 바뀔 때
+    public bool HasNearbyInteractable => hasNearbyInteractable;
+
     public InteractionSystem InteractSystem => interactSystem;
     public IInteractable CurrentTarget => currentTarget;
     void Awake()
@@ -29,9 +34,16 @@ public class PlayerInteractComponent : MonoBehaviour
 
     void Update()
     {
-
         currentTarget = FindClosestInteractable();
         interactSystem.UpdateTarget(currentTarget);
+
+        // 상호작용 가능한 오브젝트 근처 알림
+        bool hasTarget = currentTarget != null;
+        if (hasTarget != hasNearbyInteractable)
+        {
+            hasNearbyInteractable = hasTarget;
+            OnInteractableNearby?.Invoke(hasNearbyInteractable);
+        }
     }
 
     IInteractable FindClosestInteractable()

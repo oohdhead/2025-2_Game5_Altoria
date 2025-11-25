@@ -3173,7 +3173,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Color
+  m_text: "\uC0C9\uC0C1"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2a025ce544c473645adc3f9e4421f684, type: 2}
   m_sharedMaterial: {fileID: -1152067393657090986, guid: 2a025ce544c473645adc3f9e4421f684, type: 2}
@@ -3387,8 +3387,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -606.1, y: -14.0594}
-  m_SizeDelta: {x: 500, y: 895.742}
+  m_AnchoredPosition: {x: -606.1, y: -33.0368}
+  m_SizeDelta: {x: 500, y: 876.5357}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6082951725269032707
 CanvasRenderer:
@@ -3996,7 +3996,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -20.699219, y: 24.52}
+  m_AnchoredPosition: {x: 74.07, y: 24.52}
   m_SizeDelta: {x: 832.9388, y: 731.758}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &4324286652909733041
@@ -4357,7 +4357,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 659.17, y: -95}
+  m_AnchoredPosition: {x: 665.93, y: 36.8}
   m_SizeDelta: {x: 450, y: 800}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &2831913109577872247
@@ -5045,7 +5045,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 390.00003}
+  m_AnchoredPosition: {x: 0, y: -0.00041608096}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5968076748718136844
@@ -7548,7 +7548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &569930235997086783
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7657,11 +7657,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6469532171354182935, guid: fa44e2d22cc677445a01021793df2389, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1681
+      value: 1664.8
       objectReference: {fileID: 0}
     - target: {fileID: 6469532171354182935, guid: fa44e2d22cc677445a01021793df2389, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -952.78
+      value: -977.6
       objectReference: {fileID: 0}
     - target: {fileID: 6469532171354182935, guid: fa44e2d22cc677445a01021793df2389, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7727,7 +7727,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 661117615019108776, guid: 470c0ca7aa40b9a43aa5b63d2baf9246, type: 3}
       propertyPath: m_Name
-      value: Dropdown
+      value: gender select
       objectReference: {fileID: 0}
     - target: {fileID: 4139454540247988046, guid: 470c0ca7aa40b9a43aa5b63d2baf9246, type: 3}
       propertyPath: m_AnchorMax.x
@@ -7739,7 +7739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4495880595782793117, guid: 470c0ca7aa40b9a43aa5b63d2baf9246, type: 3}
       propertyPath: m_text
-      value: Male
+      value: "\uB0A8\uC790"
       objectReference: {fileID: 0}
     - target: {fileID: 4495880595782793117, guid: 470c0ca7aa40b9a43aa5b63d2baf9246, type: 3}
       propertyPath: m_fontAsset
@@ -7803,11 +7803,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6277517217959664630, guid: 470c0ca7aa40b9a43aa5b63d2baf9246, type: 3}
       propertyPath: m_Options.m_Options.Array.data[0].m_Text
-      value: Male
+      value: "\uB0A8\uC790"
       objectReference: {fileID: 0}
     - target: {fileID: 6277517217959664630, guid: 470c0ca7aa40b9a43aa5b63d2baf9246, type: 3}
       propertyPath: m_Options.m_Options.Array.data[1].m_Text
-      value: Female
+      value: "\uC5EC\uC790"
       objectReference: {fileID: 0}
     - target: {fileID: 6277517217959664630, guid: 470c0ca7aa40b9a43aa5b63d2baf9246, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
@@ -7903,11 +7903,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9176846860384864944, guid: 470c0ca7aa40b9a43aa5b63d2baf9246, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 715.73
+      value: 683.7
       objectReference: {fileID: 0}
     - target: {fileID: 9176846860384864944, guid: 470c0ca7aa40b9a43aa5b63d2baf9246, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -716.98254
+      value: -871.47
       objectReference: {fileID: 0}
     - target: {fileID: 9176846860384864944, guid: 470c0ca7aa40b9a43aa5b63d2baf9246, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

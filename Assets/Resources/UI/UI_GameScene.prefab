@@ -1685,8 +1685,8 @@ MonoBehaviour:
   - {fileID: 4757816247383634383}
   - {fileID: 6842411262333723180}
   staminaBar: {fileID: 4757816247383634383}
-  interaction: {fileID: 0}
-  interactText: {fileID: 0}
+  interaction: {fileID: 4983921868044949536}
+  interactText: {fileID: 3699588668553901865}
 --- !u!1 &6941725546647663008
 GameObject:
   m_ObjectHideFlags: 0
