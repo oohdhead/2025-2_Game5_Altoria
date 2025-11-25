@@ -1,8 +1,4 @@
 using GameInteract;
-using System.Diagnostics;
-using Unity.Android.Gradle.Manifest;
-using UnityEngine;
-
 public class InputBinder
 {
     private PlayerInputHandler handler;
