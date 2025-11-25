@@ -6,6 +6,10 @@ namespace GameUI
 {
     public class UI_LobbyScene : UIHUD
     {
+        public void OnClickDataResetButton()
+        {
+            Manager.UserData.SetAllDefaultUserData();
+        }
     }
 }
 

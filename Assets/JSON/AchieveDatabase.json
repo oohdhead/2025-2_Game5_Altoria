@@ -1,0 +1,20 @@
+{
+  "rows": [
+    {
+      "Type": "CollectInteractComponent",
+      "Counts": [{"Level":1,"Count":"10"},{"Level":2,"Count":"20"},{"Level":3,"Count":"50"},{"Level":4,"Count":"80"},{"Level":5,"Count":"120"}]
+    },
+    {
+      "Type": "UpgradeInteractComponent",
+      "Counts": [{"Level":1,"Count":"15"},{"Level":2,"Count":"25"},{"Level":3,"Count":"60"},{"Level":4,"Count":"100"},{"Level":5,"Count":"140"}]
+    },
+    {
+      "Type": "CraftInteractComponent",
+      "Counts": [{"Level":1,"Count":"15"},{"Level":2,"Count":"25"},{"Level":3,"Count":"50"},{"Level":4,"Count":"85"},{"Level":5,"Count":"130"}]
+    },
+    {
+      "Type": "TotalLife",
+      "Counts": [{"Level":1,"Count":"30"},{"Level":2,"Count":"60"},{"Level":3,"Count":"120"},{"Level":4,"Count":"200"},{"Level":5,"Count":"260"}]
+    }
+  ]
+}

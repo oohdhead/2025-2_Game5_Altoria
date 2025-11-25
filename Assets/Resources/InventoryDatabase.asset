@@ -25,10 +25,4 @@ MonoBehaviour:
   - ID: 12261000
     Count: 1
     IsEquipped: 0
-  - ID: 10051005
-    Count: 25
-    IsEquipped: 0
-  - ID: 10073052
-    Count: 55
-    IsEquipped: 0
   maxSlotCount: 30

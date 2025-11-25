@@ -70,3 +70,10 @@ public class SerializableDictionary<TKey, TValue>
         return dict;
     }
 }
+
+[System.Serializable]
+public class LevelCount
+{
+    public int Level;
+    public int Count;
+}

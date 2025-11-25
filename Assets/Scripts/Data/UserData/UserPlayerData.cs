@@ -60,6 +60,8 @@ public class PlayerData
     public float Stemina;
     public int Gender;
     public bool Customed;
+    public bool FirstGift;
+    public bool RedTreasure;
 
     public PlayerData()
     {
@@ -69,6 +71,8 @@ public class PlayerData
         Stemina = 100f;
         Gender = 0;
         Customed = false;
+        FirstGift = false;
+        RedTreasure = false;
     }
 }
 
@@ -85,25 +89,49 @@ public class UserPlayerData : Security, IUserData
     #region player
     public PlayerData GetPlayerData() => userPlayerData;
 
-    public void SetTime(float time) => userPlayerData.Time = time;
+
+    public void SetTime(float time)
+    {
+        userPlayerData.Time = time;
+        PlayerSaveData();
+    }
     public float GetTime() => userPlayerData.Time;
 
-    public void SetPlayerPosRo(Vector3 position, Quaternion quaternion)
+
+    public void SetPlayerGPS(Vector3 position, Quaternion quaternion)
     {
         userPlayerData.PlayerTransform = position;
         userPlayerData.Rotation = quaternion;
+        PlayerSaveData();
     }
+
+
     public Vector3 GetPlayerPosition() => userPlayerData.PlayerTransform;
     public Quaternion GetPlayerQuaternion() => userPlayerData.Rotation;
-
-    public void SetDataStemina(float stemina) => userPlayerData.Stemina = stemina;
 
 
     public void SetGender(int value) => userPlayerData.Gender = value;
     public int GetGender() => userPlayerData.Gender;
 
+
     public void SetCustomed() => userPlayerData.Customed = true;
     public bool GetCustomed() => userPlayerData.Customed;
+
+
+    public void SetFirstGift()
+    {
+        userPlayerData.FirstGift = true;
+        PlayerSaveData();
+    }
+    public bool GetFirstGift() => userPlayerData.FirstGift;
+
+
+    public void SetRedTreasure()
+    {
+        userPlayerData.RedTreasure = true;
+        PlayerSaveData();
+    }
+    public bool GetRedTreasure() => userPlayerData.RedTreasure;
     #endregion
 
     #region Custom
@@ -141,7 +169,11 @@ public class UserPlayerData : Security, IUserData
 
     #region Color
 
-    public void SetColor(Color color, int index) => userColorData[index].Color = color;
+    public void SetColor(Color color, int index)
+    {
+        userColorData[index].Color = color;
+        ColorSaveData();
+    }
 
     public ColorData GetColor(int index) => userColorData[index];
 

@@ -41,7 +41,7 @@ namespace GameInteract
                 slot.Init(data);
                 if (result == "Destroy")
                 {
-                    // TODO: 인벤토리에서 삭제
+                    GameSystem.Inventory.RemoveItem(data.ID, 1);
                     slot.SetBrokeImage();
                 }
             }

@@ -67,7 +67,7 @@ public class PlayerInteractComponent : MonoBehaviour
     {
         interactSystem.TryInteract(entity);
 
-        Manager.UserData.GetUserData<UserPlayerData>().SetPlayerPosRo(
+        Manager.UserData.GetUserData<UserPlayerData>().SetPlayerGPS(
                 transform.position,
                 transform.rotation);
     }

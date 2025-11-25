@@ -10,6 +10,7 @@ namespace GameUI
     {
         [SerializeField] TextMeshProUGUI itemName;
         [SerializeField] ItemSlot itemSlot;
+        [SerializeField] TextMeshProUGUI etcTxt;
 
         string itemID;
         int itemCount;
@@ -19,10 +20,15 @@ namespace GameUI
             itemID = id;
             itemCount = count;
             itemName.text = $"'{GameDB.GetItemData(id).Name}' 획득";
+            GameSystem.Inventory.AddItem(itemID, itemCount);
 
             itemSlot.SetSlot(id, count);
         }
 
-        public void OnClickOKButton() => GameSystem.Inventory.AddItem(itemID, itemCount);
+        public void SetEtcText(string text)
+        {
+            etcTxt.text = text;
+            etcTxt.gameObject.SetActive(true);
+        }
     }
 }

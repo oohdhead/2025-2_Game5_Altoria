@@ -17,7 +17,7 @@ public class DayNightCycle : MonoBehaviour
 
     [Header("Time")]
     [Range(0, 24)] float time;
-    float fullDayLength = 1200f;
+    float fullDayLength = 600f;
     float timeSpeed;
 
     [Header("Sky Materials")]
@@ -29,7 +29,7 @@ public class DayNightCycle : MonoBehaviour
     float latitude = 37f;   // 위도
     float declination = 0f; // 태양 고도
 
-    float timeSaveCo0lTime = 10f;
+    float timeSaveCoolTime = 30f;
     float lastSaveTime = 0f;
 
     void Start()
@@ -41,8 +41,7 @@ public class DayNightCycle : MonoBehaviour
         sunsetMat = Manager.Resource.Load<Material>("SunsetMat");
         nightMat = Manager.Resource.Load<Material>("NightMat");
 
-        // TODO: 세이브 파일에서 시간 데이터 가져와서 설정하기
-        time = 7f;
+        time = Manager.UserData.GetUserData<UserPlayerData>().GetTime();
         timeSpeed = 24f / fullDayLength;
     }
 
@@ -58,21 +57,19 @@ public class DayNightCycle : MonoBehaviour
         }
         else
         {
-            time += Time.deltaTime * timeSpeed; // TODO: 추후 Start로 옮길 것
+            time += Time.deltaTime * timeSpeed;
             if (time >= 24f) time -= 24f;
 
             UpdateSunPosition();
             UpdateSkybox(time);
         }
 
-        if(timeSaveCo0lTime + Time.deltaTime >= lastSaveTime)
+        if(timeSaveCoolTime + Time.deltaTime >= lastSaveTime)
         {
             SetData();
             lastSaveTime = Time.deltaTime;
         }
     }
-
-    public void InitTime(float time) => this.time = time;
 
     void UpdateSunPosition()
     {
