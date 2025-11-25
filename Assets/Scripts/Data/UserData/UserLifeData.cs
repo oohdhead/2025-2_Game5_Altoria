@@ -60,8 +60,7 @@ public class UserLifeData : Security, IUserData
             else // Load
             {
                 string loadJson = File.ReadAllText(path);
-                var wrapperData = JsonUtility.FromJson<WrapperLifeStatDataList>(loadJson);
-                // var wrapperData = JsonUtility.FromJson<WrapperLifeStatDataList>(Decrypt(loadJson, KEY));
+                var wrapperData = JsonUtility.FromJson<WrapperLifeStatDataList>(Decrypt(loadJson, KEY));
                 userLifeData = wrapperData.UserLifeData;
             }
 
@@ -84,8 +83,7 @@ public class UserLifeData : Security, IUserData
             var wrapperData = new WrapperLifeStatDataList();
             wrapperData.UserLifeData = userLifeData;
             string jsonData = JsonUtility.ToJson(wrapperData);
-            File.WriteAllText(path, jsonData);
-            //File.WriteAllText(path, Encrypt(jsonData, KEY));
+            File.WriteAllText(path, Encrypt(jsonData, KEY));
 
             result = true;
         }
