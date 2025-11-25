@@ -138,11 +138,7 @@ namespace GameUI
             SetSlot();
         }
 
-        public void OnClickStartButton()
-        {
-            Manager.Scene.LoadScene(Define.SceneType.GameScene);
-            Manager.UI.HideHUD();
-        }
+        public void OnClickStartButton() => Manager.Scene.LoadScene(Define.SceneType.GameScene);
         #endregion
     }
 }
