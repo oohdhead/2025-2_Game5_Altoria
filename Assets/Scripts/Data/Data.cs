@@ -84,5 +84,5 @@ public class LifeLevelData
 public class AchieveData
 {
     public string Type;
-    public List<int> Counts;
+    public List<LevelCount> Counts;
 }

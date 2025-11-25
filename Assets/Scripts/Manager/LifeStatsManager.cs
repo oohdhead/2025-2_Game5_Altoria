@@ -48,11 +48,35 @@ public class LifeStatsManager
 
                 if (lifeStats[i].Exp >= GameDB.GetLifeExpData(lifeStats[i].Level))
                 {
-                    var count = GameDB.GetAchieveData(type).Counts[lifeStats[i].Level]; 
-                    GameSystem.Inventory.AddItem(reward, count);
-
                     lifeStats[i].Level++;
                     levelUp = true;
+
+                    var listLevelCount = GameDB.GetAchieveData(type).Counts;
+
+                    int count = 0;
+                    for(int index = 0; index < 5; index++)
+                    {
+                        if (listLevelCount[index].Level == lifeStats[i].Level)
+                        {
+                            count = listLevelCount[index].Count;
+                        }
+                    }
+
+                    Manager.UserData.GetUserData<UserPlayerData>().SetFirstGift();
+                    var popUp = Manager.UI.ShowPopup<GetItemPopUp>();
+                    popUp.SetData("10080072", count);
+                    switch (type)
+                    {
+                        case nameof(CollectInteractComponent):
+                            popUp.SetEtcText($"채집 숙련도 {lifeStats[i].Level}레벨 달성 보상");
+                            break;
+                        case nameof(UpgradeInteractComponent):
+                            popUp.SetEtcText($"강화 숙련도 {lifeStats[i].Level}레벨 달성 보상");
+                            break;
+                        case nameof(CraftInteractComponent):
+                            popUp.SetEtcText($"제작 숙련도 {lifeStats[i].Level}레벨 달성 보상");
+                            break;
+                    }
                 }
 
                 break;
@@ -107,10 +131,23 @@ public class LifeStatsManager
 
                 if (lifeStats[i].Exp >= GameDB.GetLifeExpData(lifeStats[i].Level))
                 {
-                    var count = GameDB.GetAchieveData(typeof(TotalLife).Name).Counts[lifeStats[i].Level];
-                    GameSystem.Inventory.AddItem(reward, count);
-
                     lifeStats[i].Level++;
+
+                    var listLevelCount = GameDB.GetAchieveData(typeof(TotalLife).Name).Counts;
+
+                    int count = 0;
+                    for (int index = 0; index < 5; index++)
+                    {
+                        if (listLevelCount[index].Level == lifeStats[i].Level)
+                        {
+                            count = listLevelCount[index].Count;
+                        }
+                    }
+
+                    Manager.UserData.GetUserData<UserPlayerData>().SetFirstGift();
+                    var popUp = Manager.UI.ShowPopup<GetItemPopUp>();
+                    popUp.SetData("10080072", count);
+                    popUp.SetEtcText($"생활력 {lifeStats[i].Level}레벨 달성 보상");
                 }
             }
         }
