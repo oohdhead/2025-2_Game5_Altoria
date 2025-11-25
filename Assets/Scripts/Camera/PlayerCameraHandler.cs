@@ -26,11 +26,7 @@ public class PlayerCameraHandler : MonoBehaviour
         }
 
         var found = playerCameras.Find(c => c != null && c.GetID() == cameraName);
-        if (found == null)
-        {
-            Debug.LogWarning($"[PlayerCameraHandler] '{cameraName}' 카메라를 찾을 수 없습니다.");
-            return;
-        }
+        if (found == null) return;
 
         currentCamera = found;
         currentCamera.SetActiveCamera();
@@ -42,7 +38,6 @@ public class PlayerCameraHandler : MonoBehaviour
     {
         SetCamera(defaultCamera.gameObject.name);
     }
-
 
     public CameraRegister GetCurrentCamera() => currentCamera;
 

@@ -1,5 +1,6 @@
 using GameInteract;
 using System.Diagnostics;
+using UnityEngine;
 
 public class InputBinder
 {
@@ -9,9 +10,7 @@ public class InputBinder
     public InputBinder(PlayerInputHandler input) { handler = input; }
     public void Initialize(IMoveInput  receiver)
     {
-        handler.OnMove += receiver.OnMoveInput;
-        handler.OnMoveCanceled += receiver.OnMoveCancel;
-        handler.OnJump += receiver.OnJumpInput;
+        Bind(receiver);
         if (receiver is IInteractInput interact) handler.OnInteract += interact.TryInteract;
         if (receiver is IRidingInput riding) handler.OnRiding += riding.TryRiding;
     }
@@ -24,18 +23,33 @@ public class InputBinder
             UnityEngine.Debug.Log("RECEIVER IS NONE");
         }
 
+        BindInput(receiver);
+    }
+    void BindInput(IMoveInput receiver)
+    {
         handler.OnMove += receiver.OnMoveInput;
         handler.OnMoveCanceled += receiver.OnMoveCancel;
-        handler.OnJump += receiver.OnJumpInput;
-    }
 
+        if(receiver is IJumper jumper) handler.OnJump += jumper.OnJumpInput;
+        if (currentReceiver is IRunner runner)
+        {
+            handler.OnRun += runner.OnRunInput;
+            handler.OnRunCancel += runner.OnRunCancel;
+        }
+    }
     public void Unbind()
     {
         if (currentReceiver == null) return;
 
         handler.OnMove -= currentReceiver.OnMoveInput;
         handler.OnMoveCanceled -= currentReceiver.OnMoveCancel;
-        handler.OnJump -= currentReceiver.OnJumpInput;
+        if (currentReceiver is IJumper jumper) handler.OnJump -= jumper.OnJumpInput;
+
+        if (currentReceiver is IRunner runner)
+        {
+            handler.OnRun -= runner.OnRunInput;
+            handler.OnRunCancel -= runner.OnRunCancel;
+        }
         currentReceiver = null;
     }
 }

@@ -1,6 +1,8 @@
+using System;
 using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.AI;
+using static Define;
 
 public class Move : IMove
 {
@@ -11,9 +13,7 @@ public class Move : IMove
     GroundChecker groundChecker;
     NavMeshAgent agent;
 
-    Vector3 velocity;
-    Vector3 moveInput;
-    Vector3 navMove;
+    Vector3 velocity, moveInput, navMove;
 
     bool useNavPath;
 
@@ -26,8 +26,6 @@ public class Move : IMove
     {
         transform = entity.transform;
         if (entity is IPlayerMovable movable) data = movable.MoveData;
-
-        Debug.Log(data.Speed);
 
         controller = transform.GetComponent<CharacterController>();
         groundChecker = transform.GetComponent<GroundChecker>();
@@ -62,14 +60,14 @@ public class Move : IMove
             agent.enabled = true;
             agent.nextPosition = transform.position;
         }
-
+        Debug.Log("Tick");
         if (useNavPath) UpdateNavMovement();
         else MoveCharacter();
 
         RotateModel();
 
-        if (agent != null)
-            agent.nextPosition = transform.position;
+        if (agent != null) agent.nextPosition = transform.position;
+
     }
 
     void ApplyGravity(bool isGrounded)
@@ -84,11 +82,9 @@ public class Move : IMove
     {
         locked = state;
 
-        if (agent)
-            agent.enabled = !state;
+        if (agent) agent.enabled = !state;
 
-        if (controller)
-            controller.enabled = !state;
+        if (controller) controller.enabled = !state;
 
         if (state)
         {
@@ -101,7 +97,8 @@ public class Move : IMove
     {
         if (moveInput.sqrMagnitude < 0.001f) return;
 
-        Vector3 move = moveInput.normalized * data.Speed * Time.deltaTime;
+        float speed = GetCurrentSpeed();
+        Vector3 move = moveInput.normalized * speed * Time.deltaTime;
         controller.Move(move);
     }
 
@@ -120,12 +117,21 @@ public class Move : IMove
             return;
         }
 
-        navMove.Normalize();
-        Vector3 move = navMove * data.Speed * Time.deltaTime;
-        move.y = 0; 
-
+        float speed = GetCurrentSpeed();
+        Vector3 move = navMove.normalized * speed * Time.deltaTime;
         controller.Move(move);
     }
+
+    float GetCurrentSpeed() //temp --> i know this is trash code
+    {
+        if (transform.TryGetComponent<PlayerController>(out var player))
+        {
+            if (player.State.HasState(PlayerState.Run)) return data.RunSpeed;
+        }
+
+        return data.Speed;
+    }
+
     void RotateModel()
     {
         if (model == null) return;
@@ -161,6 +167,7 @@ public class Move : IMove
         useNavPath = true;
     }
 
+    
     public void Jump()
     {
         if (IsGrounded)

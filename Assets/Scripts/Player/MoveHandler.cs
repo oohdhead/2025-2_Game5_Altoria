@@ -21,8 +21,8 @@ public class MoveHandler
 
     public void Tick()
     {
-        if (cameraTransform == null)
-            cameraTransform = Camera.main?.transform;
+        if (cameraTransform == null) cameraTransform = Camera.main?.transform;
+
 
         Vector3 moveDir = Vector3.zero;
 
