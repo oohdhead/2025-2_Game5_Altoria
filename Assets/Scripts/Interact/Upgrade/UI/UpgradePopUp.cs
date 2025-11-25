@@ -47,19 +47,18 @@ namespace GameInteract
                 rightSlotItems.Clear();
             }
 
-            // TODO: 인벤토리에서 EquipItem 아이템만 들고오기
-            var tempList = GameSystem.Inventory.GetAllItems()
+            var equipItemList = GameSystem.Inventory.GetAllItems()
                     .Where(item => item.item is EquipItem)
                     .ToList();
 
-            for (int i = 0; i < tempList.Count; i++)
+            for (int i = 0; i < equipItemList.Count; i++)
             {
                 GameObject upgradeSlotPrefab = Resources.Load<GameObject>(nameof(UpgradeSlot));
                 var newGO = Instantiate(upgradeSlotPrefab, slotRoot);
                 if (newGO.TryGetComponent<UpgradeSlot>(out var slot))
                 {
-                    slot.Init(tempList[i].item.ItemData, i);
-                    slot.OnClickAction = (i) => SetUpgradeData(tempList[i].item.ItemData);
+                    slot.Init(equipItemList[i].item.ItemData, i);
+                    slot.OnClickAction = (i) => SetUpgradeData(equipItemList[i].item.ItemData);
                 }
                 rightSlotItems.Add(newGO);
             }
@@ -106,7 +105,9 @@ namespace GameInteract
             }
 
             int curCnt = item.count;
-            int needCnt = GameDB.GetUpgradeData(GameSystem.Inventory.GetEquipItem(selectItemData.Content).Level).Material;
+            var eqiupItem = GameSystem.Inventory.GetItem(selectItemData.ID).item as EquipItem;
+            Debug.Log($"{GetType()} : {eqiupItem.ItemData.ID} : Level {eqiupItem.Level}");
+            int needCnt = GameDB.GetUpgradeData(eqiupItem.Level).Material;
 
             if(curCnt < needCnt)
                 Manager.UI.ShowPopup<NoItemPopUp>();

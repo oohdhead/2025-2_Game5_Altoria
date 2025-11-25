@@ -12,7 +12,7 @@ public class InventoryManager
     List<InventoryEntry> inventory = new(); // 런타임용
 
     [Header("Equip Item")]
-    Dictionary<Define.ContentType, EquipItem> equipItemList = new();
+    Dictionary<Define.ContentType, EquipItem> equipItemList = new(); // Only Equiped Items
     public event System.Action<EquipItem> OnItemEquipped;
     public event System.Action<EquipItem> OnItemUnequipped;
 
@@ -134,7 +134,6 @@ public class InventoryManager
             if (newItem.isEquipped)
                 equipItemList[newItem.item.ItemData.Content] = (EquipItem)newItem.item;
         }
-        Debug.Log("[InventoryManager] : 인벤토리 데이터 로드 완료");
     }
 
     // inventoryData에 넣기
@@ -155,6 +154,5 @@ public class InventoryManager
 
             inventoryData.rows.Add(data);
         }
-        Debug.Log("[InventoryManager] : 인벤토리 데이터 세이브 완료");
     }
 }

@@ -37,7 +37,8 @@ namespace GameItem
                 return;
 
             Level += 1;
-            Manager.UI.MainHUD.GetWidget<Hotbar>().LevelChanged(ItemData.ID, Level);
+            Manager.UI.MainHUD.GetWidget<Hotbar>().LevelChanged(ItemData, Level);
+            GameSystem.Inventory.InventorySave();
         }
     }
     public class ConsumeItem : Item, IConsumable, IStackable //소비아이템

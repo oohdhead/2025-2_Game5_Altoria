@@ -74,7 +74,6 @@ public class GameScene : BaseScene
         var go = new GameObject("DayNight");
         var script = go.AddComponent<DayNightCycle>();
         go.transform.SetParent(this.transform);
-        script.InitTime(Manager.UserData.GetUserData<UserPlayerData>().GetTime());
     }
 
     protected virtual void OnDestroy()
