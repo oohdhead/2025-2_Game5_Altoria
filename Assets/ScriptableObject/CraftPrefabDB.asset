@@ -23,3 +23,8 @@ MonoBehaviour:
     Position: {x: -0.004, y: 0.025, z: -0.086}
     Rotation: {x: -81.283, y: 168.707, z: -78.091}
     Scale: {x: 1, y: 1, z: 1}
+  - Type: 3
+    Prefab: {fileID: 2128364397589329185, guid: 403e9a065cfe3b34daccd3b3974fdc5d, type: 3}
+    Position: {x: -0.004, y: 0.025, z: -0.086}
+    Rotation: {x: -81.283, y: 168.707, z: -78.091}
+    Scale: {x: 1, y: 1, z: 1}

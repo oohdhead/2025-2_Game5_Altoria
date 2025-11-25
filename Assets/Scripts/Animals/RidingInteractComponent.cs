@@ -12,7 +12,7 @@ namespace GameInteract
         public Vector3 Rotation;
     }
 
-    public class RidingInteractComponent : BaseEntityComponent, IRiding, IMoveInput, IPlayerMovable
+    public class RidingInteractComponent : BaseEntityComponent, IRiding, IMoveInput, IPlayerMovable,IJumper
     {
         [SerializeField] Transform mountPoint;
         [SerializeField] Animator animator;
@@ -145,9 +145,8 @@ namespace GameInteract
         public void OnJumpInput()
         {
             move.Jump();
+            animator.SetTrigger("Jump");
 
-            if (animator)
-                animator.SetTrigger("Jump");
         }
 
         #endregion

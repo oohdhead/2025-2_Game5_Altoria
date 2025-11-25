@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b784e1958228e643b2b5d5f15de8124, type: 3}
   m_Name: HorseMoveData
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 10
-  <RunSpeed>k__BackingField: 16
-  <JumpHeight>k__BackingField: 6
-  <Gravity>k__BackingField: -19.62
+  <Speed>k__BackingField: 15
+  <RunSpeed>k__BackingField: 15
+  <JumpHeight>k__BackingField: 8
+  <Gravity>k__BackingField: -29.43
