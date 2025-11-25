@@ -1072,6 +1072,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6418092482848378220}
+  - component: {fileID: 4284749929831093450}
   m_Layer: 5
   m_Name: Interact
   m_TagString: Untagged
@@ -1086,7 +1087,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4983921868044949536}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1097,9 +1098,21 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1324, y: -666.33}
+  m_AnchoredPosition: {x: 1324, y: -666.3297}
   m_SizeDelta: {x: 457.8823, y: 152.653}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &4284749929831093450
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4983921868044949536}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5022079411907282371
 GameObject:
   m_ObjectHideFlags: 0
@@ -1576,6 +1589,7 @@ GameObject:
   - component: {fileID: 7174472605058151615}
   - component: {fileID: 7488510375434408684}
   - component: {fileID: 6713560162220079795}
+  - component: {fileID: 5520538655938796520}
   m_Layer: 5
   m_Name: UI_GameScene
   m_TagString: Untagged
@@ -1680,13 +1694,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fd2c2ad1a85cf4b9fafb8837a31dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fixedWidgets:
-
-  - {fileID: 6842411262333723180}
-  staminaBar: {fileID: 0}
+  fixedWidgets: []
   interaction: {fileID: 4983921868044949536}
   interactText: {fileID: 3699588668553901865}
-
+  FadeEffect: {fileID: 0}
+--- !u!225 &5520538655938796520
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6828596953392655048}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6941725546647663008
 GameObject:
   m_ObjectHideFlags: 0

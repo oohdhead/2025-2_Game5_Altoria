@@ -37,13 +37,7 @@ public class PlayerInteractComponent : MonoBehaviour
         currentTarget = FindClosestInteractable();
         interactSystem.UpdateTarget(currentTarget);
 
-        // 상호작용 가능한 오브젝트 근처 알림
-        bool hasTarget = currentTarget != null;
-        if (hasTarget != hasNearbyInteractable)
-        {
-            hasNearbyInteractable = hasTarget;
-            OnInteractableNearby?.Invoke(hasNearbyInteractable);
-        }
+        NearbyInteract();
     }
 
     IInteractable FindClosestInteractable()
@@ -116,4 +110,14 @@ public class PlayerInteractComponent : MonoBehaviour
     }
 #endif
 
+    // 상호작용 가능한 오브젝트 근처 알림
+    void NearbyInteract()
+    {
+        bool hasTarget = currentTarget != null;
+        if (hasTarget != hasNearbyInteractable)
+        {
+            hasNearbyInteractable = hasTarget;
+            OnInteractableNearby?.Invoke(hasNearbyInteractable);
+        }
+    }
 }
