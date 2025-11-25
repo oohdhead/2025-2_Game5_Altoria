@@ -29,12 +29,8 @@ namespace GameInteract
                 slots[i].OnClicked -= HandleClick;
         }
 
-        void HandleClick(int index)
-        {
-            Debug.Log($"[ProgressSlots] Click {index}");
-            OnSlotClicked?.Invoke(index);
-        }
-      
+
+
         public void SetItem(int index, CraftingSlot slot )
         {
             if (slot.Recipe != null)
@@ -46,13 +42,10 @@ namespace GameInteract
         }
            
 
+        void HandleClick(int index) => OnSlotClicked?.Invoke(index);
         public void UpdateProgress(int index, float progress)=> slots[index].FillProgress(progress);
 
-        public void OnCompleteProgress(int index)
-        {
-            slots[index].FillProgress(1f);
-            Debug.Log($"[ProgressSlots] Slot {index} completed");
-        }
+        public void OnCompleteProgress(int index) => slots[index].FillProgress(1f);
 
         public void ClearSlot(int index)
         {

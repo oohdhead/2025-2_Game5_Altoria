@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 6140586624777291781}
   m_Layer: 0
   m_Name: MiniMapCamera
-  m_TagString: Untagged
+  m_TagString: MiniMapCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -782,15 +782,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4229198156193846931, guid: f6569d2f4682ba440b2b429b321f2679, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4229198156193846931, guid: f6569d2f4682ba440b2b429b321f2679, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4229198156193846931, guid: f6569d2f4682ba440b2b429b321f2679, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4229198156193846931, guid: f6569d2f4682ba440b2b429b321f2679, type: 3}
       propertyPath: m_LocalPosition.x

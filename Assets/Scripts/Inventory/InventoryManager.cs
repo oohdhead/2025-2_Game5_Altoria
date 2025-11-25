@@ -1,18 +1,18 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 using GameItem;
 using GameInventory;
 using GameData;
-using UnityEditor;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public class InventoryManager 
 {
-    InventoryDatabase inventoryData; // µ¥ÀÌÅÍ ÀúÀå¿ë
+    InventoryDatabase inventoryData; // ë°ì´í„° ì €ì¥ìš©
 
-    List<InventoryEntry> inventory = new(); // ·±Å¸ÀÓ¿ë
+    List<InventoryEntry> inventory = new(); // ëŸ°íƒ€ì„ìš©
 
     [Header("Equip Item")]
-    Dictionary<Define.ContentType, EquipItem> equipItemList = new();
+    Dictionary<Define.ContentType, EquipItem> equipItemList = new(); // Only Equiped Items
     public event System.Action<EquipItem> OnItemEquipped;
     public event System.Action<EquipItem> OnItemUnequipped;
 
@@ -27,24 +27,25 @@ public class InventoryManager
     {
         InventoryEntry existing = inventory.Find(x => x.item.ItemData.ID == itemID);
 
-        if (existing != null) //ÀÌ¹Ì Á¸ÀçÇÏ¸é 
+        if (existing != null) //ì´ë¯¸ ì¡´ì¬í•˜ë©´ 
         {
             existing.count += count;
-            Debug.Log($"[InventoryManager] : {itemID} {count}°³ Ãß°¡ (ÃÑ {existing.count})");
+            Debug.Log($"[InventoryManager] : {itemID} {count}ê°œ ì¶”ê°€ (ì´ {existing.count})");
             return true;
         }
 
         if (inventory.Count >= inventoryData.maxSlotCount)
         {
-            Debug.Log("[InventoryManager] : ÀÎº¥Åä¸®°¡ °¡µæÂü");
+            Debug.Log("[InventoryManager] : ì¸ë²¤í† ë¦¬ê°€ ê°€ë“ì°¸");
             return false;
         }
 
-        // »õ·Î¿î ¾ÆÀÌÅÛ »ı¼º
+        // ìƒˆë¡œìš´ ì•„ì´í…œ ìƒì„±
         InventoryEntry newItem = new InventoryEntry(itemID, count);
 
         inventory.Add(newItem);
-        Debug.Log($"[InventoryManager] : {itemID} {count}°³ »õ ½½·Ô Ãß°¡ (ÇöÀç ½½·Ô ¼ö: {inventory.Count})");
+        Debug.Log($"[InventoryManager] : {itemID} {count}ê°œ ìƒˆ ìŠ¬ë¡¯ ì¶”ê°€ (í˜„ì¬ ìŠ¬ë¡¯ ìˆ˜: {inventory.Count})");
+        InventorySave();
         return true;
     }
 
@@ -55,13 +56,13 @@ public class InventoryManager
 
         if (existing == null)
         {
-            Debug.LogWarning($"[InventoryManager] : {itemID} - Àß¸øµÈ ItemID");
+            Debug.LogWarning($"[InventoryManager] : {itemID} - ì˜ëª»ëœ ItemID");
             return false;
         }
 
         if (existing.isEquipped)
         {
-            Debug.LogWarning($"[InventoryManager] : {itemID} ÀåÂøµÈ ¾ÆÀÌÅÛÀº »èÁ¦ÇÒ ¼ö ¾øÀ½");
+            Debug.LogWarning($"[InventoryManager] : {itemID} ì¥ì°©ëœ ì•„ì´í…œì€ ì‚­ì œí•  ìˆ˜ ì—†ìŒ");
             return false;
 
         }
@@ -69,17 +70,25 @@ public class InventoryManager
         if (existing.count <= 0)
         {
             inventory.Remove(existing);
-            Debug.Log($"[InventoryManager] : {itemID} ÀüºÎ »èÁ¦µÊ");
+            Debug.Log($"[InventoryManager] : {itemID} ì „ë¶€ ì‚­ì œë¨");
         }
         else
         {
-            Debug.Log($"[InventoryManager] : {itemID} {count}°³ »èÁ¦µÊ (³²Àº ¼ö·®: {existing.count})");
+            Debug.Log($"[InventoryManager] : {itemID} {count}ê°œ ì‚­ì œë¨ (ë‚¨ì€ ìˆ˜ëŸ‰: {existing.count})");
         }
+
+        InventorySave();
 
         return true;
     }
 
+    public bool CheckItemCount(string itemID,int count)
+    {
+        var entry = GetItem(itemID);
+        if (entry == null) return false;
 
+        return entry.count >= count;
+    }
     public InventoryEntry GetItem(string itemID)
     {
         return inventory.Find(x => x.item.ItemData.ID == itemID);
@@ -111,8 +120,8 @@ public class InventoryManager
     }
 
     // Load & Save
-    // inventoryData¿¡¼­ ²¨³»±â 
-    public void InventoryLoad()  // ÀÏ´Ü publicÀ¸·Î ÇØµÒ
+    // inventoryDataì—ì„œ êº¼ë‚´ê¸° 
+    public void InventoryLoad()  // ì¼ë‹¨ publicìœ¼ë¡œ í•´ë‘ 
     {
         inventory.Clear();
 
@@ -125,10 +134,9 @@ public class InventoryManager
             if (newItem.isEquipped)
                 equipItemList[newItem.item.ItemData.Content] = (EquipItem)newItem.item;
         }
-        Debug.Log("[InventoryManager] : ÀÎº¥Åä¸® µ¥ÀÌÅÍ ·Îµå ¿Ï·á");
     }
 
-    // inventoryData¿¡ ³Ö±â
+    // inventoryDataì— ë„£ê¸°
     public void InventorySave()
     {
         inventoryData.rows.Clear();
@@ -146,10 +154,5 @@ public class InventoryManager
 
             inventoryData.rows.Add(data);
         }
-#if UNITY_EDITOR          // ¿¡µğÅÍ¿¡¼­¸¸ ÀúÀå °¡´É
-        EditorUtility.SetDirty(inventoryData);
-        AssetDatabase.SaveAssets();
-#endif
-        Debug.Log("[InventoryManager] : ÀÎº¥Åä¸® µ¥ÀÌÅÍ ¼¼ÀÌºê ¿Ï·á");
     }
 }

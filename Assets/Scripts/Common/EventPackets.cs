@@ -33,12 +33,12 @@ public struct CraftingCompletedEvent
 {
     public CraftingType Type;
     public int SlotIndex;
-    public ItemData Item;
-    public CraftingCompletedEvent(CraftingType type, int  slotIndex= 0, ItemData item=null)
+    public ItemEntry entry;
+    public CraftingCompletedEvent(CraftingType type, ItemEntry entry,int  slotIndex= 0)
     {
         this.Type = type;
         this.SlotIndex = slotIndex;
-        this.Item = item;
+        this.entry = entry;
     }
 }
 

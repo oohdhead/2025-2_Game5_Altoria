@@ -1,3 +1,4 @@
+using Common;
 using GameUI;
 using System;
 using System.Collections.Generic;
@@ -27,13 +28,15 @@ namespace GameInteract
         {
             itemSlot.SetSlot(spriteAddress, count);
 
-            
             rewardButton.gameObject.SetActive(state == CraftingState.Completed);
-           
-
+          
             progressText.text = textDict.TryGetValue(state, out var text) ? text : "";
         }
 
-        public void OnClickButton() => OnClicked?.Invoke();
+        public void OnClickButton()
+        {
+            OnClicked?.Invoke();
+            GameSystem.Life.AddExp<CraftInteractComponent>(10);
+        }
     }
 }

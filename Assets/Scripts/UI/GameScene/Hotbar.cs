@@ -53,17 +53,19 @@ namespace GameUI
                 slots[index].Clear();
         }
 
-        public void LevelChanged(string itemID, int newCount)
+        public void LevelChanged(ItemData itemData, int newCount)
         {
-            //int idx = FindSlotIndexByItem(itemID);
-            //if (idx < 0) return;
+            for(int i = 0; i < slots.Count; i++)
+            {
+                if (slots[i].ItemData == null)
+                    continue;
 
-            //if (newCount == -1)
-            //    slots[idx].Clear();
-            //else
-            //{
-            //    // TODO: 강화 단계만 변경
-            //}
+                if (slots[i].ItemData.ID == itemData.ID)
+                {
+                    slots[i].Bind(itemData);
+                    return;
+                }
+            }
         }
 
         int FindSlotIndexByItem(ContentType type)

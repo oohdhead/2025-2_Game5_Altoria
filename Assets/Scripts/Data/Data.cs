@@ -78,5 +78,11 @@ public class FishData
 public class LifeLevelData
 {
     public int Level;
-    public int Exp;
+    public int NeedExp;
+}
+[System.Serializable]
+public class AchieveData
+{
+    public string Type;
+    public List<LevelCount> Counts;
 }

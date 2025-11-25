@@ -1,4 +1,4 @@
-using Common;
+﻿using Common;
 using GameUI;
 using SceneLoad;
 using SceneLoade;
@@ -48,7 +48,9 @@ public class GameScene : BaseScene
             loadingUI.StartLoding(loader);
 
 
-            loadingUI.OnClosed += PlayerLoad;
+            loadingUI.OnEndLoad += PlayerLoad;
+            if(!Manager.UserData.GetUserData<UserPlayerData>().GetFirstGift())
+                loadingUI.OnClosed += FirstGift;
         };
     }
 
@@ -72,12 +74,19 @@ public class GameScene : BaseScene
         var go = new GameObject("DayNight");
         var script = go.AddComponent<DayNightCycle>();
         go.transform.SetParent(this.transform);
-        script.InitTime(Manager.UserData.GetUserData<UserPlayerData>().GetTime());
     }
 
     protected virtual void OnDestroy()
     {
       
         Debug.Log("GameScene Destroyed.");
+    }
+
+    void FirstGift()
+    {
+        Manager.UserData.GetUserData<UserPlayerData>().SetFirstGift();
+        var popUp = Manager.UI.ShowPopup<GetItemPopUp>();
+        popUp.SetData("10080072", 10);
+        popUp.SetEtcText("선물이 도착했습니다!");
     }
 }
