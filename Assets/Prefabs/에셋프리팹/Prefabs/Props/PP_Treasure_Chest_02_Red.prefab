@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8155323225222359117}
   - component: {fileID: 8155323225221261965}
   - component: {fileID: 2706805977489565502}
+  - component: {fileID: 7855173351127304699}
+  - component: {fileID: 8097160357606234592}
   m_Layer: 0
   m_Name: PP_Treasure_Chest_02_Red
   m_TagString: Untagged
@@ -110,6 +112,36 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: d25af09d5afe04142b63a7ebc7193b79, type: 3}
+--- !u!111 &7855173351127304699
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8155323225223263309}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 7400000, guid: 983c312c76c6cfc4ea477834c89a8107, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 983c312c76c6cfc4ea477834c89a8107, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
+--- !u!114 &8097160357606234592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8155323225223263309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d694b64673ceb914086e5fb679aecfc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &8155323225223263311
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +175,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8155323225223161965}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -64.77, y: 0, z: 0}
 --- !u!33 &8155323225222359119
 MeshFilter:
   m_ObjectHideFlags: 0
