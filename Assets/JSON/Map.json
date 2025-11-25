@@ -13067,6 +13067,94 @@
                 "z": 1.0
             },
             "SiblingIndex": 4
+        },
+        {
+            "ID": 594,
+            "parentID": 0,
+            "PrefabAddress": "Treasure",
+            "Position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "Rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "Scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "SiblingIndex": 5
+        },
+        {
+            "ID": 595,
+            "parentID": 594,
+            "PrefabAddress": "PP_Treasure_Chest_02_Red",
+            "Position": {
+                "x": -97.95565795898438,
+                "y": 5.303375720977783,
+                "z": 125.3954086303711
+            },
+            "Rotation": {
+                "x": 0.0,
+                "y": -0.9943596124649048,
+                "z": 0.0,
+                "w": 0.10606145858764649
+            },
+            "Scale": {
+                "x": 1.688700556755066,
+                "y": 1.6886999607086182,
+                "z": 1.688700556755066
+            },
+            "SiblingIndex": 0
+        },
+        {
+            "ID": 596,
+            "parentID": 0,
+            "PrefabAddress": "Riding",
+            "Position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "Rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "Scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "SiblingIndex": 6
+        },
+        {
+            "ID": 597,
+            "parentID": 596,
+            "PrefabAddress": "RidingHorse",
+            "Position": {
+                "x": -23.80116081237793,
+                "y": 0.026605606079101564,
+                "z": -23.73588752746582
+            },
+            "Rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "Scale": {
+                "x": 2.0,
+                "y": 2.0,
+                "z": 2.0
+            },
+            "SiblingIndex": 0
         }
     ]
 }

@@ -60,7 +60,8 @@ public class Define
         Interacting=1<<2,
         Riding=1<<3,
         Attack=1<<4,
-        Die=1<<5,
+        Run=1<<5,
+        Die=1<<6,
 
     }
     public enum CustomizationType

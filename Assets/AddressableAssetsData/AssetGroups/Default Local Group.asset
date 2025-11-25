@@ -815,6 +815,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c9a45acd6ba86445b7757c4fae8a458
+    m_Address: Treasure
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1d3232102526a604b8f6663f7770125b
     m_Address: PP_Mushroom_Long_Dark_Brown_01
     m_ReadOnly: 0
@@ -1467,6 +1472,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 351bc42f2c16770469f350c91282dd68
     m_Address: PP_Mushroom_Wall_05
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 353c44f7b2e8ffb489f6bba117bf2216
+    m_Address: Riding
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -3877,6 +3887,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 88fab8ca42af04342a43637aea079bba
     m_Address: PP_Ground_02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8921ddec343c22240a3e23ddf35cf9c0
+    m_Address: RidingHorse
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
