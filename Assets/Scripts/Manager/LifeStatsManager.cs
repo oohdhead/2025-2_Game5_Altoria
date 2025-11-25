@@ -1,17 +1,21 @@
-using System.Collections.Generic;
-using UnityEngine;
-using GameInteract;
-using Unity.VisualScripting;
+using Common;
 using GameData;
+using GameInteract;
+using GameUI;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class LifeStatsManager
 {
     List<LifeStatData> lifeStats;
+    const string reward = "10080072";
 
     readonly Dictionary<string, float> weights = new()
     {
-        { nameof(CollectInteractComponent), 0.7f },
+        { nameof(CollectInteractComponent), 0.4f },
         { nameof(UpgradeInteractComponent), 0.3f },
+        { nameof(CraftInteractComponent), 0.3f },
     };
 
     public LifeStatsManager()
@@ -23,6 +27,7 @@ public class LifeStatsManager
             {
                 new(nameof(CollectInteractComponent), 0, 0),
                 new(nameof(UpgradeInteractComponent), 0, 0),
+                new(nameof(CraftInteractComponent), 0, 0),
                 new(nameof(TotalLife), 0, 0),
             };
         }
@@ -45,6 +50,33 @@ public class LifeStatsManager
                 {
                     lifeStats[i].Level++;
                     levelUp = true;
+
+                    var listLevelCount = GameDB.GetAchieveData(type).Counts;
+
+                    int count = 0;
+                    for(int index = 0; index < 5; index++)
+                    {
+                        if (listLevelCount[index].Level == lifeStats[i].Level)
+                        {
+                            count = listLevelCount[index].Count;
+                        }
+                    }
+
+                    Manager.UserData.GetUserData<UserPlayerData>().SetFirstGift();
+                    var popUp = Manager.UI.ShowPopup<GetItemPopUp>();
+                    popUp.SetData("10080072", count);
+                    switch (type)
+                    {
+                        case nameof(CollectInteractComponent):
+                            popUp.SetEtcText($"채집 숙련도 {lifeStats[i].Level}레벨 달성 보상");
+                            break;
+                        case nameof(UpgradeInteractComponent):
+                            popUp.SetEtcText($"강화 숙련도 {lifeStats[i].Level}레벨 달성 보상");
+                            break;
+                        case nameof(CraftInteractComponent):
+                            popUp.SetEtcText($"제작 숙련도 {lifeStats[i].Level}레벨 달성 보상");
+                            break;
+                    }
                 }
 
                 break;
@@ -89,9 +121,6 @@ public class LifeStatsManager
     {
         int totalLevel = GetLevel<TotalLife>();
 
-        if (totalLevel != GetLevel<T>() && !(levelUp && (totalLevel == GetLevel<T>() - 1)))
-            return;
-
         int addExp = Mathf.RoundToInt(weights[typeof(T).Name] * amount);
 
         for (int i = 0; i < lifeStats.Count; i++)
@@ -99,6 +128,27 @@ public class LifeStatsManager
             if (lifeStats[i].LifeType == typeof(TotalLife).Name)
             {
                 lifeStats[i].Exp += addExp;
+
+                if (lifeStats[i].Exp >= GameDB.GetLifeExpData(lifeStats[i].Level))
+                {
+                    lifeStats[i].Level++;
+
+                    var listLevelCount = GameDB.GetAchieveData(typeof(TotalLife).Name).Counts;
+
+                    int count = 0;
+                    for (int index = 0; index < 5; index++)
+                    {
+                        if (listLevelCount[index].Level == lifeStats[i].Level)
+                        {
+                            count = listLevelCount[index].Count;
+                        }
+                    }
+
+                    Manager.UserData.GetUserData<UserPlayerData>().SetFirstGift();
+                    var popUp = Manager.UI.ShowPopup<GetItemPopUp>();
+                    popUp.SetData("10080072", count);
+                    popUp.SetEtcText($"생활력 {lifeStats[i].Level}레벨 달성 보상");
+                }
             }
         }
 

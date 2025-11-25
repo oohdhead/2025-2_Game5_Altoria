@@ -93,7 +93,7 @@ namespace GameUI
         public void Close()
         {
             OnClosed?.Invoke();
-            Destroy(gameObject);    
+            Destroy(gameObject);
         }
     }
     public class UIWidget:UIBase

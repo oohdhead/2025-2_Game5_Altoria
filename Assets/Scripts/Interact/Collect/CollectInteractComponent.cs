@@ -34,7 +34,7 @@ namespace GameInteract
             GetComponent<Collider>().enabled = false;
             transform.localScale = Vector3.zero;
 
-            StartCoroutine("ScaleUP");
+            StartCoroutine("Respawn");
 
             List<(CollectGroup, float)> probList = new List<(CollectGroup, float)>();
             var dic = GameDB.GetCollectData(objectID).Value;
@@ -64,15 +64,13 @@ namespace GameInteract
             objectID = id;
         }
 
-        IEnumerator ScaleUP()
+        IEnumerator Respawn()
         {
             float elapsed = 0f;
 
             while (elapsed < returnDuration)
             {
                 elapsed += Time.deltaTime;
-                float t = elapsed / returnDuration;
-                transform.localScale = Vector3.Lerp(Vector3.zero, orignScale, Mathf.SmoothStep(0, 1, t));
                 yield return null;
             }
 

@@ -42,6 +42,7 @@ public class UserLifeData : Security, IUserData
         {
             new(nameof(CollectInteractComponent), 0, 0),
             new(nameof(UpgradeInteractComponent), 0, 0),
+            new(nameof(CraftInteractComponent), 0, 0),
             new(nameof(TotalLife), 0, 0),
         };
     }

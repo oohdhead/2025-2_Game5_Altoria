@@ -16,7 +16,6 @@ public class HotbarSlot : UpgradeSelectItem
 
     public void Clear()
     {
-        // TODO: Default 상태로 변경
         item.SetActive(false);
         itemGradeImg.sprite = Manager.Resource.Load<Sprite>("DefaultFrame");
     }

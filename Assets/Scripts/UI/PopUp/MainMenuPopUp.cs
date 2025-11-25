@@ -5,6 +5,7 @@ using TMPro;
 using GameInteract;
 using Common;
 using static UnityEngine.Rendering.DebugUI;
+using GameData;
 
 [System.Serializable]
 public class Stat
@@ -16,13 +17,14 @@ public class Stat
 
 public class MainMenuPopUp : UIPopUp
 {
-    [SerializeField] Stat[] stats = new Stat[3];
+    [SerializeField] Stat[] stats = new Stat[4];
 
     readonly System.Type[] lifeTypes =
     {
         typeof(TotalLife),
         typeof(CollectInteractComponent),
-        typeof(UpgradeInteractComponent)
+        typeof(UpgradeInteractComponent),
+        typeof(CraftInteractComponent)
     };
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -61,33 +63,39 @@ public class MainMenuPopUp : UIPopUp
         int exp = GetEXP(type);
 
         stat.slider.minValue = 0;
-        stat.slider.maxValue = 250;
+        stat.slider.maxValue = (float)GameDB.GetLifeExpData(GetLevel(type));
         stat.slider.value = exp;
 
-        stat.statText.text = $"{exp} / {stat.slider.maxValue}";
+        if(GetLevel(type) == 5)
+        {
+            stat.slider.value = stat.slider.maxValue;
+            stat.statText.text = "MAX";
+        }
+        else
+            stat.statText.text = $"{exp} / {stat.slider.maxValue}";
     }
     int GetLevel(System.Type t)
     {
         if (t == typeof(TotalLife))
             return GameSystem.Life.GetLevel<TotalLife>();
-        if (t == typeof(CollectInteractComponent))
+        else if (t == typeof(CollectInteractComponent))
             return GameSystem.Life.GetLevel<CollectInteractComponent>();
-        if (t == typeof(UpgradeInteractComponent))
+        else if (t == typeof(UpgradeInteractComponent))
             return GameSystem.Life.GetLevel<UpgradeInteractComponent>();
-
-        return 1;
+        else
+            return GameSystem.Life.GetLevel<CraftInteractComponent>();
     }
 
     int GetEXP(System.Type t)
     {
         if (t == typeof(TotalLife))
             return GameSystem.Life.GetEXP<TotalLife>();
-        if (t == typeof(CollectInteractComponent))
+        else if (t == typeof(CollectInteractComponent))
             return GameSystem.Life.GetEXP<CollectInteractComponent>();
-        if (t == typeof(UpgradeInteractComponent))
+        else if (t == typeof(UpgradeInteractComponent))
             return GameSystem.Life.GetEXP<UpgradeInteractComponent>();
-
-        return 0;
+        else
+            return GameSystem.Life.GetLevel<CraftInteractComponent>();
     }
 
     public void OnClickInventory()
@@ -119,10 +127,5 @@ public class MainMenuPopUp : UIPopUp
     {
         Manager.UI.ShowPopup<ExitPopUp>().SetPopUpType(ExitPopUpType.ExitGame);
         Debug.Log("[MainMenuPopUp] : 종료창");
-    }
-
-    public void ClosePopUp()
-    {
-        Manager.UI.ClosePopup();
     }
 }
