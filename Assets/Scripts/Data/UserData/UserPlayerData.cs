@@ -61,6 +61,7 @@ public class PlayerData
     public int Gender;
     public bool Customed;
     public bool FirstGift;
+    public bool RedTreasure;
 
     public PlayerData()
     {
@@ -71,6 +72,7 @@ public class PlayerData
         Gender = 0;
         Customed = false;
         FirstGift = false;
+        RedTreasure = false;
     }
 }
 
@@ -115,12 +117,21 @@ public class UserPlayerData : Security, IUserData
     public void SetCustomed() => userPlayerData.Customed = true;
     public bool GetCustomed() => userPlayerData.Customed;
 
+
     public void SetFirstGift()
     {
         userPlayerData.FirstGift = true;
         PlayerSaveData();
     }
     public bool GetFirstGift() => userPlayerData.FirstGift;
+
+
+    public void SetRedTreasure()
+    {
+        userPlayerData.RedTreasure = true;
+        PlayerSaveData();
+    }
+    public bool GetRedTreasure() => userPlayerData.RedTreasure;
     #endregion
 
     #region Custom

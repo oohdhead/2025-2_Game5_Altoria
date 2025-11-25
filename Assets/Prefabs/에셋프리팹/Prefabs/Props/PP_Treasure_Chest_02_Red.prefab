@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2706805977489565502}
   - component: {fileID: 7855173351127304699}
   - component: {fileID: 8097160357606234592}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PP_Treasure_Chest_02_Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 983c312c76c6cfc4ea477834c89a8107, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_UpdateMode: 0
   m_CullingType: 0
