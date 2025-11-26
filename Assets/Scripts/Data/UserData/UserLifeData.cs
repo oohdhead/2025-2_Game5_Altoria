@@ -32,7 +32,7 @@ public class UserLifeData : Security, IUserData
 {
     public Action OnSaveAction;
 
-    string path = Path.Combine(Application.dataPath, "lifeData.json");
+    string path = Path.Combine(Application.dataPath, "Data/lifeData.json");
     
     List<LifeStatData> userLifeData;
 
