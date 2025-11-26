@@ -12,6 +12,7 @@ using System.Text;
 public class SettingPopUp : UIPopUp
 {
     SettingData setting = SettingData.Instance;
+    [SerializeField] SoundManager soundManager;
 
     [Header("Setting Tabs")]
     [SerializeField] List<GameObject> tabs;
@@ -36,12 +37,12 @@ public class SettingPopUp : UIPopUp
         ShowTab(0);
 
         // 오디오 초기화
-        BGMtext.Value = SoundManager.Instance.GetBGMVolume();
-        SFXtext.Value = SoundManager.Instance.GetSFXVolume();
+        BGMtext.Value = soundManager.GetBGMVolume();
+        SFXtext.Value = soundManager.GetSFXVolume();
 
         // 슬라이더 값 변경 시 사운드 매니저에 반영
-        BGMtext.GetComponent<Slider>().onValueChanged.AddListener(SoundManager.Instance.SetBGMVolume);
-        SFXtext.GetComponent<Slider>().onValueChanged.AddListener(SoundManager.Instance.SetSFXVolume);
+        BGMtext.GetComponent<Slider>().onValueChanged.AddListener(soundManager.SetBGMVolume);
+        SFXtext.GetComponent<Slider>().onValueChanged.AddListener(soundManager.SetSFXVolume);
 
         // 화면모드, 품질
         screenmode.onValueChanged.AddListener(ChangeScreenMode);
@@ -50,17 +51,6 @@ public class SettingPopUp : UIPopUp
         // 카메라 감도 초기화
         CameraSensitivity.Value = 60f;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        /*
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Manager.UI.ClosePopup();
-        }
-        */
     }
 
     public void OnClickAudioTab()
@@ -104,12 +94,12 @@ public class SettingPopUp : UIPopUp
     // 오디오 설정
     public void SetBGMSlider(float value)
     {
-        SoundManager.Instance.SetBGMVolume(value);
+        soundManager.SetBGMVolume(value);
     }
 
     public void SetSFXSlider(float value)
     {
-        SoundManager.Instance.SetSFXVolume(value);
+        soundManager.SetSFXVolume(value);
     }
 
     // 화면 모드
