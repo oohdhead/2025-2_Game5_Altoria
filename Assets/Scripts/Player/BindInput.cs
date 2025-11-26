@@ -1,4 +1,7 @@
 using GameInteract;
+using System.Diagnostics;
+using UnityEngine;
+
 public class InputBinder
 {
     private PlayerInputHandler handler;

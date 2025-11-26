@@ -196,16 +196,4 @@ public class InventoryUI : UIPopUp
     {
         Manager.UI.ClosePopup();
     }
-
-
-    // -----------------------------------------------------------------------------
-    // 아이템 추가 test
-    public void debugAddItem()
-    {
-        int randomID = Random.Range(1, 201);  // 랜덤 아이템 코드 추가
-        string itemID = randomID.ToString();
-
-        GameSystem.Inventory.AddItem(itemID, 10);
-        RefreshInventory();
-    }
 }
