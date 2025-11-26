@@ -78,9 +78,9 @@ public class PlayerData
 
 public class UserPlayerData : Security, IUserData
 {
-    string path = Path.Combine(Application.dataPath, "playerData.json");
-    string custom_path = Path.Combine(Application.dataPath, "customData.json");
-    string color_path = Path.Combine(Application.dataPath, "colorData.json");
+    string path = Path.Combine(Application.dataPath, "Data/playerData.json");
+    string custom_path = Path.Combine(Application.dataPath, "Data/customData.json");
+    string color_path = Path.Combine(Application.dataPath, "Data/colorData.json");
 
     PlayerData userPlayerData;
     List<CustomData> userCustomizingData;
@@ -225,8 +225,7 @@ public class UserPlayerData : Security, IUserData
             else // Load
             {
                 string loadJson = File.ReadAllText(path);
-                userPlayerData = JsonUtility.FromJson<PlayerData>(loadJson);
-                //playerData = JsonUtility.FromJson<PlayerData>(Decrypt(loadJson, KEY));
+                userPlayerData = JsonUtility.FromJson<PlayerData>(Decrypt(loadJson, KEY));
             }
 
             result = true;
@@ -246,8 +245,7 @@ public class UserPlayerData : Security, IUserData
         try
         {
             string jsonData = JsonUtility.ToJson(userPlayerData);
-            File.WriteAllText(path, jsonData);
-            //File.WriteAllText(path, Encrypt(jsonData, KEY));
+            File.WriteAllText(path, Encrypt(jsonData, KEY));
 
             result = true;
         }
@@ -286,7 +284,7 @@ public class UserPlayerData : Security, IUserData
             else // Load
             {
                 string loadJson = File.ReadAllText(custom_path);
-                var wrapper = JsonUtility.FromJson<WrapperClassCustomDataList>(loadJson);
+                var wrapper = JsonUtility.FromJson<WrapperClassCustomDataList>(Decrypt(loadJson, KEY));
                 userCustomizingData = wrapper.UserCustomizingData;
             }
 
@@ -309,7 +307,7 @@ public class UserPlayerData : Security, IUserData
             WrapperClassCustomDataList wrapper = new();
             wrapper.UserCustomizingData = userCustomizingData;
             string jsonData = JsonUtility.ToJson(wrapper);
-            File.WriteAllText(custom_path, jsonData);
+            File.WriteAllText(custom_path, Encrypt(jsonData, KEY));
             result = true;
         }
         catch (Exception e)
@@ -348,7 +346,7 @@ public class UserPlayerData : Security, IUserData
             else // Load
             {
                 string loadJson = File.ReadAllText(color_path);
-                var wrapper = JsonUtility.FromJson<WrapperColorData>(loadJson);
+                var wrapper = JsonUtility.FromJson<WrapperColorData>(Decrypt(loadJson, KEY));
                 userColorData = wrapper.UserColorData;
             }
 
@@ -371,7 +369,7 @@ public class UserPlayerData : Security, IUserData
             WrapperColorData wrapper = new();
             wrapper.UserColorData = userColorData;
             string jsonData = JsonUtility.ToJson(wrapper);
-            File.WriteAllText(color_path, jsonData);
+            File.WriteAllText(color_path, Encrypt(jsonData, KEY));
             result = true;
         }
         catch (Exception e)

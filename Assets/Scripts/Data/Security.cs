@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Security
 {
-    protected const string KEY = "@pRiMaRyKeY@";
+    protected const string KEY = "@pRiMaRyKeYIkHwan@";
 
     protected string Encrypt(string plainText, string key)
     {
