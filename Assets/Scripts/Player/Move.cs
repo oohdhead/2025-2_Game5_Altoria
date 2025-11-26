@@ -60,7 +60,7 @@ public class Move : IMove
             agent.enabled = true;
             agent.nextPosition = transform.position;
         }
-        Debug.Log("Tick");
+
         if (useNavPath) UpdateNavMovement();
         else MoveCharacter();
 

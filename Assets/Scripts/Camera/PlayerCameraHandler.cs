@@ -36,7 +36,7 @@ public class PlayerCameraHandler : MonoBehaviour
 
     public void SetDefaultCamera()
     {
-        SetCamera(defaultCamera.gameObject.name);
+        defaultCamera.SetActiveCamera();
     }
 
     public CameraRegister GetCurrentCamera() => currentCamera;
