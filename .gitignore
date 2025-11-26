@@ -35,10 +35,10 @@
 # ignore Sprites Folder
 /[Aa]ssets/Sprites
 # ignore Datas
-/[Aa]ssets/colorData
-/[Aa]ssets/customData
-/[Aa]ssets/lifeData
-/[Aa]ssets/playerData
+/[Aa]ssets/colorData.json
+/[Aa]ssets/customData.json
+/[Aa]ssets/lifeData.json
+/[Aa]ssets/playerData.json
 # ignore SkyBox
 /[Aa]ssets/Customizable Skybox
 
