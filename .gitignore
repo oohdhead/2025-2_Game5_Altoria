@@ -34,6 +34,14 @@
 /[Aa]ssets/@Resources/
 # ignore Sprites Folder
 /[Aa]ssets/Sprites
+# ignore Datas
+/[Aa]ssets/colorData
+/[Aa]ssets/customData
+/[Aa]ssets/lifeData
+/[Aa]ssets/playerData
+# ignore SkyBox
+/[Aa]ssets/Customizable Skybox
+
 # Visual Studio cache directory
 .vs/
 
