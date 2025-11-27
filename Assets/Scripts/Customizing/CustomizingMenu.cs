@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static Define;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace GameUI
 {
@@ -71,7 +72,7 @@ namespace GameUI
                         var index = (i == 3 || i == 4) ? j + 1 : j;
                         var id = $"{firstFormat}[{secondFormat}{type}{index}]";
 
-                        slot.SlotInit(type, id);
+                        slot.SlotInit(type, id, j + 1);
                         slot.OnClickAction = () => ApplyMesh(type, id);
                     }
                     slots.Add(newGO);
@@ -121,6 +122,23 @@ namespace GameUI
         }
 
         #region Button Event
+        public void OnClickEmptyOption(int type)
+        {
+            Manager.UserData.GetUserData<UserPlayerData>().SetID((CustomizationType)type, "null");
+
+            switch ((CustomizationType)type)
+            {
+                case CustomizationType.eyebrows:
+                    eyebrowRoot.sharedMesh = null;
+                    break;
+                case CustomizationType.facialHair_:
+                    facehairRoot.sharedMesh = null;
+                    break;
+                case CustomizationType.hair_:
+                    hairRoot.sharedMesh = null;
+                    break;
+            }
+        }
         public void ChangedGender()
         {
             gender = genderDropDown.value;
