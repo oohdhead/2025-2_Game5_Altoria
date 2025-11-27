@@ -557,7 +557,7 @@ GameObject:
   - component: {fileID: 25511945054143293}
   - component: {fileID: 6140680891443235471}
   - component: {fileID: 4702641019446014414}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sheep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -616,7 +616,7 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_LayerOverridePriority: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -709,8 +709,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cd2c301454258498f2ce716e3fcf2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 4
   animator: {fileID: 25511944822440754}
+  itemID: 10061015
 --- !u!1 &25511944815030436
 GameObject:
   m_ObjectHideFlags: 0
