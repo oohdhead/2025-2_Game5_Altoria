@@ -162,7 +162,7 @@ namespace GameUI
         public void OnChagedDropDown()
         {
             if (colorComponentDropdown.value > 3)
-                colorComponent = EColorComponent._Color2;
+                colorComponent = (EColorComponent)(colorComponentDropdown.value - 4);
             else
                 colorComponent = (EColorComponent)colorComponentDropdown.value;
         }

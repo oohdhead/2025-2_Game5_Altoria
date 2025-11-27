@@ -11,21 +11,26 @@ namespace GameInteract
     {
         [SerializeField] string objectID;
 
-        bool interactCollTime = false;
+        
 
-        [Header("Respawn")]
-        float returnDuration = 20.0f;
+        [Header("CoolTime")]
+        bool interactCoolTime = false;
+        float oollTimeDuration = 20.0f;
         Vector3 orignScale;
+
+        private void Awake()
+        {
+            orignScale = transform.localScale;
+        }
 
         public override void Interact(IEntity entity)
         {
             base.Interact(entity);
-            if (interactCollTime)
+            if (interactCoolTime)
                 return;
 
-            interactCollTime = true;
+            interactCoolTime = true;
             CollectTimer timer = new(2);
-            orignScale = transform.localScale;
             timer.OnFinished += EndCollect;
         }
 
@@ -34,7 +39,7 @@ namespace GameInteract
             GetComponent<Collider>().enabled = false;
             transform.localScale = Vector3.zero;
 
-            StartCoroutine("Respawn");
+            StartCoroutine("CoolTime");
 
             List<(CollectGroup, float)> probList = new List<(CollectGroup, float)>();
             var dic = GameDB.GetCollectData(objectID).Value;
@@ -64,19 +69,13 @@ namespace GameInteract
             objectID = id;
         }
 
-        IEnumerator Respawn()
+        IEnumerator CoolTime()
         {
-            float elapsed = 0f;
-
-            while (elapsed < returnDuration)
-            {
-                elapsed += Time.deltaTime;
-                yield return null;
-            }
+            yield return new WaitForSeconds(oollTimeDuration);
 
             transform.localScale = orignScale;
             GetComponent<Collider>().enabled = true;
-            interactCollTime = false;
+            interactCoolTime = false;
         }
     }
 }

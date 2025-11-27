@@ -32,8 +32,11 @@ public class CharacterCustomizer : MonoBehaviour
                 return;
             }
 
-            partsModels[i].sharedMesh = Manager.Resource.Load<Mesh>(
-                Manager.UserData.GetUserData<UserPlayerData>().GetID((Define.CustomizationType)i));
+            var id = Manager.UserData.GetUserData<UserPlayerData>().GetID((Define.CustomizationType)i);
+            if (id == "null")
+                partsModels[i].sharedMesh = null;
+            else
+                partsModels[i].sharedMesh = Manager.Resource.Load<Mesh>(id);
 
         }
     }
